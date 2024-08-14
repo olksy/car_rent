@@ -1,9 +1,10 @@
-import Footer from "../layouts/Footer";
+// import Footer from "../layouts/Footer";
+import CarPage from "../pages/main/CarPage";
 
 function App() {
   return (
     <>
-    <Footer />
+      <CarPage />
     </>
   );
 }
