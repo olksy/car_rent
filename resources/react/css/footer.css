@@ -50,12 +50,37 @@
   line-height: 25px;
 }
 
-.locations a {
+a {
   font-size: 14px;
   color: inherit;
   transition: color 0.15s ease-out;
 }
 
-a:hover {
+a:hover,
+.footer-map-link:hover .footer-map-span {
   color: rgb(56, 148, 182);
+}
+
+.mr-2 {
+  margin-right: .5rem;
+}
+
+.footer-map-link {
+  max-width: 255px;
+}
+
+.footer-map-link img {
+  height: auto;
+  max-width: 350px;
+  width: 100%;
+}
+
+.footer-map-span {
+  font-size: 14px;
+  transition: color 0.15s ease-out;
+}
+
+.rights {
+  font-size: 12px;
+  color: #8c98ab;
 }
