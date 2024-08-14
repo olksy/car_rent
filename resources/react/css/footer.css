@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #212529;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 79.167% !important;
+}
+
+.footer-pages-block {
+  column-gap: 25px;
+}
+
+.footer-pages-block a {
+  font-size: 14px;
+  color: inherit;
+  transition: color 0.15s ease-out;
+}
+
+.letter-spacing-0_2 {
+  letter-spacing: 0.02em;
+}
+
+.footer-social-block {
+  gap: 10px;
+}
+
+.footer-locations-container {
+  gap: 50px;
+}
+
+.location-in-dubai {
+  color: #727d8e;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.footer-locations {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: minmax(160px, 1fr) minmax(160px, 1fr) minmax(
+      160px,
+      1fr
+    );
+  line-height: 25px;
+}
+
+.locations a {
+  font-size: 14px;
+  color: inherit;
+  transition: color 0.15s ease-out;
+}
+
+a:hover {
+  color: rgb(56, 148, 182);
+}

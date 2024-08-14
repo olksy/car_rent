@@ -1,0 +1,11 @@
+import Footer from "../layouts/Footer";
+
+function App() {
+  return (
+    <>
+    <Footer />
+    </>
+  );
+}
+
+export default App;
