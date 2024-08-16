@@ -68,3 +68,52 @@
 .gallery-item-thumb.active {
     border-bottom: 3px solid #009fe2;
 }
+
+.rental-pt {
+    font-size: 14px;
+    line-height: 25px;
+}
+
+.specifications-icon {
+    padding-right: .5rem;
+}
+
+.specifications-icon > svg {
+    font-size: 30px;
+}
+
+.specifications-title {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: #8c98ab;
+}
+
+.specifications-main {
+    font-size: 14px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-18 {
+    font-size: 18px;
+}
+
+.bg-badge-info {
+    background: rgba(0, 159, 226, .05);
+}
+
+.rounded-medium {
+    border-radius: 10px;
+}
+
+.text-right {
+    text-align: right;
+}
