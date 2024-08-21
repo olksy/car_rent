@@ -9,7 +9,8 @@ class CarController extends Controller
 {
     public function show($slug, $id)
     {
-        $car = Cars::where('slug', $slug)
+        $car = Cars::with(['brand', 'bodyType', 'category'])
+            ->where('slug', $slug)
             ->where('id', $id)
             ->first();
 

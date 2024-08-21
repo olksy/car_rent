@@ -94,6 +94,10 @@
     font-size: 14px;
 }
 
+.fs-12 {
+    font-size: 12px;
+}
+
 .fs-14 {
     font-size: 14px;
 }
@@ -106,6 +110,10 @@
     font-size: 18px;
 }
 
+.fs-24 {
+    font-size: 24px;
+}
+
 .bg-badge-info {
     background: rgba(0, 159, 226, .05);
 }
@@ -114,6 +122,174 @@
     border-radius: 10px;
 }
 
+.rounded-small {
+    border-radius: 5px;
+}
+
 .text-right {
     text-align: right;
+}
+
+/* right column */
+
+.title-car-mobile {
+    background: #f7f8fa;
+    border-radius: 15px;
+    height: max-content;
+    max-width: 100%;
+    padding: 0 !important;
+}
+
+.priceText span:first-of-type,
+.feel-free {
+    color: #8c98ab;
+}
+
+.priceText span:nth-child(2) {
+    color: #fff;
+}
+
+.bg-brand-primary {
+    background-color: #1359ba;
+}
+
+.price-val {
+    font-weight: 500;
+}
+
+.availability-label.bg-info {
+    background: rgba(0, 159, 226, .1) !important;
+}
+
+.color-brand-accent {
+    color: #009fe2;
+}
+
+.calendar-check {
+ padding-bottom: 2px;
+}
+
+.calendar-check-svg {
+    font-size: 23px;
+}
+
+.min-height-35 {
+    min-height: 35px;
+}
+
+.no-deposit-svg {
+    font-size: 20px;
+}
+
+.block-height-35 {
+    height: 35px;
+}
+
+.btn-medium {
+    height: 40px;
+    min-width: 40px;
+    padding: 0 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact_btn {
+    background-color: #0ea548;
+    transition: background-color 0.15s ease-out;
+}
+
+.contact_btn:hover {
+    background-color: #1f8c49;
+}
+
+.span-contact {
+    color: #fff;
+}
+
+.or-book-online::before {
+    border-color: #ccd4de !important;
+    border-top: 1px solid;
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+
+.o-b-o-text {
+    color: #8c98ab;
+    background-color: #f7f8fa;
+}
+
+.header-date-span {
+    color: #8c98ab;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-border-right {
+    border-right: 1px solid;
+    border-color: #ccd4de !important;
+}
+
+.custom-label {
+    font-size: 9px;
+    font-weight: 700;
+    left: 2px;
+    letter-spacing: .05em;
+    line-height: 15px;
+    padding: 0 15px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 4px;
+}
+
+#datepicker_start,
+#datepicker_end {
+    border: none !important;
+}
+
+
+.form-control[readonly] {
+    background-color: #f7f8fa;
+}
+
+.custom-label~.form-control {
+    height: 50px;
+    background-size: 18px 18px;
+    padding-top: 15px;
+    padding-left: 17px;
+    border-radius: 0;
+}
+
+#datepicker_start {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#datepicker_end {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    outline: 1px solid rgb(56, 148, 182);
+}
+
+.select-start-time-container {
+    position: relative;
+}
+
+#select-start-time {
+    border-radius: 5px;
+}
+
+.arrow-down-svg {
+    position: absolute;
+    top: 38%;
+    right: 8%
 }

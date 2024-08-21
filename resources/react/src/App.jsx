@@ -4,17 +4,19 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function App() {
-  // const [data, setData] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [data, setData] = useState([]);
 
-  //   useEffect(() => {
-  //       axios.get('http://127.0.0.1:8002/api/cars')
-  //           .then(response => {
-  //               setData(response.data);
-  //           })
-  //           .catch(error => {
-  //               console.error("There was an error fetching the data!", error);
-  //           });
-  //   }, []);
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8002/api/cars')
+            .then(response => {
+                setData(response.data);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the data!", error);
+            });
+    }, []);
+    // console.log(data);
 
     return (
         <>

@@ -10,4 +10,3 @@ Route::get('/', function () {
 });
 
 Route::get('locale/{lang}', [LocaleController::class, 'setLocale']);
-// Route::get('/cars/{slug}/{id}/detail', [CarController::class, 'show']);

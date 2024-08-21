@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('body_types', function (Blueprint $table) {
             $table->id();
-            $table->string('body_type');
+            $table->string('name');
             $table->timestamps();
         });
     }
