@@ -293,3 +293,50 @@
     top: 38%;
     right: 8%
 }
+
+#litepicker {
+    width: 100%;
+}
+
+.litepicker {
+    width: 100%;
+}
+
+.litepicker .container__months {
+    border-radius: 0;
+    box-shadow: none !important;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100% !important;
+}
+
+.month-item {
+    transform: none !important;
+    width: 100% !important;
+}
+
+.month-item-name, .month-item-year {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.month-item-weekdays-row>div, .title-car-mobile .container__days>div, .title-car-mobile .month-item-weekdays-row>div {
+    align-items: center;
+    display: flex;
+    height: 45px;
+    justify-content: center;
+    width: 100% !important;
+}
+
+
+.litepicker .container__months .month-item-weekdays-row>div {
+    color: #8c98ab;
+    font-size: 14px !important;
+    font-weight: 500;
+}
+
+.title-car-mobile .container__days, .title-car-mobile .month-item-weekdays-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
+}

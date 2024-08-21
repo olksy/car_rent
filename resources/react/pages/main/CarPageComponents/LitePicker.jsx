@@ -1,25 +1,43 @@
-import { useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import Litepicker from "litepicker";
 
-export default function LitePicker() {
+export default function LitePicker({ onDatesSelected }) {
     const today = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
 
+    const [selectedDates, setSelectedDates] = useState({
+        startDate: null,
+        endDate: null,
+    });
+
     useEffect(() => {
         const picker = new Litepicker({
             element: document.getElementById("datepicker"),
+            format: 'DD-MMM-YYYY',
             inlineMode: true,
             singleMode: false,
             autoRefresh: true,
-            minDate: new Date() - 1,
+            minDate: today - 1,
             minDays: 1,
-            startDate: today,
-            endDate: tomorrow,
+            startDate: selectedDates.startDate,
+            endDate: selectedDates.endDate,
+            setup: (picker) => {
+                picker.on('selected', (date1, date2) => {
+                    setSelectedDates({ startDate: date1, endDate: date2 });
+                    if (onDatesSelected) {
+                        onDatesSelected(date1, date2);
+                    }
+                });
+            },
+            tooltipNumber: (totalDays) => {
+                return totalDays - 1;
+            }
         });
 
         return () => picker.destroy();
-    });
+    }, [selectedDates, onDatesSelected]);
 
     return <div id="datepicker" />;
 }

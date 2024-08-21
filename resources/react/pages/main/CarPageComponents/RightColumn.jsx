@@ -4,9 +4,34 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import LitePicker from "./LitePicker";
-// import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { format} from 'date-fns';
 
-export default function RightColumn ({data}) {
+export default function RightColumn({ data }) {
+    const [dates, setDates] = useState({ startDate: null, endDate: null });
+    
+    const handleDatesSelected = (startDate, endDate) => {
+        setDates({ startDate, endDate });
+    };
+    
+    const calculateDaysDifference = () => {
+        if (dates.startDate && dates.endDate) {
+            const timeDiff =
+            dates.endDate.getTime() - dates.startDate.getTime();
+            return Math.ceil(timeDiff / (1000 * 3600 * 24));
+        }
+        return 0;
+    };
+    const numberOfDays = calculateDaysDifference();
+    
+    // console.log(dates);
+    
+    const formattedStartDate = dates.startDate ? format(new Date(dates.startDate.dateInstance), 'dd MMM yyyy') : '';
+    const formattedEndDate = dates.endDate ? format(new Date(dates.endDate.dateInstance), 'dd MMM yyyy') : '';
+
+    const startDateDisplay = dates.startDate ? formattedStartDate : "Choose";
+    const endDateDisplay = dates.endDate ? formattedEndDate : "Choose";
+
     return (
         <>
             <div className="col-12 col-lg-5 p-0 d-none d-lg-block">
@@ -107,7 +132,7 @@ export default function RightColumn ({data}) {
                     </div>
 
                     {/* ---DATE PICKER */}
-                    <div className="d-none d-lg-block bg-white rounded-small p-3 mx-3 mb-2 mt-3 mt-lg-0">
+                    <div className="d-none d-lg-block bg-white rounded-medium p-3 mx-3 mb-2 mt-3 mt-lg-0">
                         <div className="d-flex justify-content-between pt-1">
                             <span className="header-date-span text-uppercase">
                                 Rental date range
@@ -121,8 +146,9 @@ export default function RightColumn ({data}) {
                             <h2 className="h4 text-truncate fw-normal fs-24">
                                 Choose rental dates
                             </h2>
-                            {/* заміниться */}
-                            <span className="flex-shrink-0">1 day</span>
+                            <span className="flex-shrink-0">
+                                {numberOfDays} day
+                            </span>
                         </div>
 
                         <div className="row mx-0">
@@ -141,7 +167,7 @@ export default function RightColumn ({data}) {
                                             id="datepicker_start"
                                             readOnly
                                             type="text"
-                                            value={"21 Aug 2024"}
+                                            value={startDateDisplay}
                                         />
                                     </div>
                                     <div className="col-6 form-group px-0 mb-0">
@@ -156,7 +182,7 @@ export default function RightColumn ({data}) {
                                             id="datepicker_end"
                                             readOnly
                                             type="text"
-                                            value={"21 Aug 2024"}
+                                            value={endDateDisplay}
                                         />
                                     </div>
                                 </div>
@@ -209,8 +235,13 @@ export default function RightColumn ({data}) {
 
                         {/* ---CALENDAR */}
                         <div className="row mt-2 mb-2">
-                            <LitePicker />
+                            <LitePicker onDatesSelected={handleDatesSelected} />
                         </div>
+                    </div>
+
+                    {/* ---PERSONAL INFO */}
+                    <div id="personalInfo" className="mx-3 mb-3 bg-shades-white">
+                        <p>чіваува</p>
                     </div>
                 </div>
             </div>
