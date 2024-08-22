@@ -4,33 +4,93 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import LitePicker from "./LitePicker";
-import { useState } from "react";
-import { format} from 'date-fns';
+import { useState, useRef, useEffect } from "react";
+import { format } from 'date-fns';
+import intlTelInput from 'intl-tel-input';
 
 export default function RightColumn({ data }) {
     const [dates, setDates] = useState({ startDate: null, endDate: null });
-    
+
     const handleDatesSelected = (startDate, endDate) => {
         setDates({ startDate, endDate });
     };
-    
+
     const calculateDaysDifference = () => {
         if (dates.startDate && dates.endDate) {
             const timeDiff =
-            dates.endDate.getTime() - dates.startDate.getTime();
+                dates.endDate.getTime() - dates.startDate.getTime();
             return Math.ceil(timeDiff / (1000 * 3600 * 24));
         }
         return 0;
     };
     const numberOfDays = calculateDaysDifference();
-    
+    const totalPrice = data.price * numberOfDays;
+    const vaxTax = Math.round(totalPrice * 0.05);
+
     // console.log(dates);
-    
-    const formattedStartDate = dates.startDate ? format(new Date(dates.startDate.dateInstance), 'dd MMM yyyy') : '';
-    const formattedEndDate = dates.endDate ? format(new Date(dates.endDate.dateInstance), 'dd MMM yyyy') : '';
+
+    const formattedStartDate = dates.startDate
+        ? format(new Date(dates.startDate.dateInstance), "dd MMM yyyy")
+        : "";
+    const formattedEndDate = dates.endDate
+        ? format(new Date(dates.endDate.dateInstance), "dd MMM yyyy")
+        : "";
 
     const startDateDisplay = dates.startDate ? formattedStartDate : "Choose";
     const endDateDisplay = dates.endDate ? formattedEndDate : "Choose";
+
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (inputRef.current) {
+            const iti = intlTelInput(inputRef.current, {
+                utilsScript:
+                    "https://cdn.jsdelivr.net/npm/intl-tel-input@24.1.3/build/js/utils.js",
+                initialCountry: "ae",
+                separateDialCode: true,
+                autoPlaceholder: "aggressive",
+                strictMode: true,
+            });
+
+            return () => {
+                if (iti) {
+                    iti.destroy();
+                }
+            };
+        }
+    }, []);
+
+    // const [timeLeft, setTimeLeft] = useState(60 * 60);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+    // useEffect(() => {
+    //     const updateCountdown = () => {
+    //         setTimeLeft(prevTime => {
+    //             if (prevTime <= 0) {
+    //                 setIsButtonDisabled(true);
+    //                 return 0;
+    //             }
+    //             return prevTime - 1;
+    //         });
+    //     };
+    //     const timerId = setInterval(updateCountdown, 1000);
+
+    //     return () => clearInterval(timerId);
+    // }, []);
+
+    // const formatTime = (seconds) => {
+    //     const minutes = Math.floor(seconds / 60);
+    //     const secs = seconds % 60;
+    //     return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    // };
+
+    useEffect(() => {
+        if (numberOfDays === 0 || dates.startDate === null) {
+            setIsButtonDisabled(true);
+        } else {
+            setIsButtonDisabled(false);
+        }
+    }, [numberOfDays, dates]);
 
     return (
         <>
@@ -65,11 +125,11 @@ export default function RightColumn({ data }) {
                                 <span className="calendar-check d-flex ms-1 mr-2">
                                     <LiaCalendarCheck
                                         className="calendar-check-svg"
-                                        fill="#009fe2"
+                                        fill="#0ea548"
                                     />
                                 </span>
                                 <span className="color-brand-accent fs-14">
-                                    Available today
+                                    Available now
                                 </span>
                             </div>
 
@@ -134,10 +194,10 @@ export default function RightColumn({ data }) {
                     {/* ---DATE PICKER */}
                     <div className="d-none d-lg-block bg-white rounded-medium p-3 mx-3 mb-2 mt-3 mt-lg-0">
                         <div className="d-flex justify-content-between pt-1">
-                            <span className="header-date-span text-uppercase">
+                            <span className="header-date-span text-uppercase letter-spacing-1">
                                 Rental date range
                             </span>
-                            <span className="header-date-span text-uppercase">
+                            <span className="header-date-span text-uppercase letter-spacing-1">
                                 Your rental
                             </span>
                         </div>
@@ -161,7 +221,6 @@ export default function RightColumn({ data }) {
                                         >
                                             Pick-Up Date
                                         </label>
-                                        {/* дані будуть братись з календаря */}
                                         <input
                                             className="form-control fs-14"
                                             id="datepicker_start"
@@ -240,8 +299,221 @@ export default function RightColumn({ data }) {
                     </div>
 
                     {/* ---PERSONAL INFO */}
-                    <div id="personalInfo" className="mx-3 mb-3 bg-shades-white">
-                        <p>чіваува</p>
+                    <div
+                        id="personalInfo"
+                        className="mx-3 mb-3 bg-shades-white"
+                    >
+                        <form
+                            action="/"
+                            method="post"
+                            className="rentCar_validate"
+                            id="driver_details_form"
+                        >
+                            <div className="p-3">
+                                <div className="d-flex justify-content-between">
+                                    <span className="personal-inf fs-11 fw-bold text-uppercase letter-spacing-1">
+                                        Personal information
+                                    </span>
+                                </div>
+
+                                <div className="d-flex align-items-center justify-content-between">
+                                    <h2 className="h4 mb-3 text-truncate fw-normal fs-24 ">
+                                        Your booking details
+                                    </h2>
+                                </div>
+
+                                {/* ---PHONE NUMBER */}
+                                {/* додати перевірку на правильність номеру телефона */}
+                                <div className="mb-3">
+                                    <div className="form-field-wrapper p-0 fs-14 d-flex justify-content-start flex-wrap rounded-small default-phone-input">
+                                        <label className="fs-9 ps-3 required pt-1 fw-bolder letter-spacing-0_5 lh-1 text-uppercase w-100 m-0 text-start">
+                                            Phone number
+                                        </label>
+                                        <input
+                                            ref={inputRef}
+                                            type="tel"
+                                            pattern="[0-9]*"
+                                            inputMode="numeric"
+                                            id="reservation_form_phone-input"
+                                            className="phone-number-input"
+                                            required
+                                            autoComplete="off"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    {/* ---Booking Summary */}
+                    <div className="d-none d-lg-block" id="summary">
+                        <div
+                            className="rounded-small mx-3 pt-2 pb-3 px-3"
+                            id="booking_summary"
+                        >
+                            <div className="d-flex justify-content-between mb-1">
+                                <span className="book-sum fs-11 fw-bold text-uppercase letter-spacing-1">
+                                    Booking summary
+                                </span>
+                            </div>
+                            <div className="d-flex align-items-center justify-content-between mb-2">
+                                <span
+                                    className="text-truncate fs-14"
+                                    id="rental_days_summary"
+                                >
+                                    Rental {numberOfDays} day
+                                </span>
+                                <span
+                                    className="fw-normal flex-shrink-0 fs-14"
+                                    id="rental_price_summary"
+                                >
+                                    € {totalPrice}
+                                </span>
+                            </div>
+
+                            <div className="d-flex align-items-center justify-content-between pb-2">
+                                <span
+                                    className="text-truncate fs-14"
+                                    id="tax_text_summary"
+                                >
+                                    VAT Tax (5%)
+                                </span>
+                                <span
+                                    className="font-weight-normal flex-shrink-0 fs-14"
+                                    id="total_tax_price"
+                                >
+                                    + € {vaxTax}
+                                </span>
+                            </div>
+                            <div className="d-flex align-items-center justify-content-between border-top border-shades-300 border-top-dotted border-top-medium pt-2">
+                                <span className="fs-24 font-weight-normal text-truncate">
+                                    Total
+                                </span>
+                                <span
+                                    className="fs-24 font-weight-normal flex-shrink-0"
+                                    id="total_price"
+                                >
+                                    € {totalPrice + vaxTax}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Reserve */}
+                        <form
+                            id="requestBookings"
+                            method="/"
+                            className="rc_validate"
+                            data-validate="true"
+                            // noValidate="novalidate"
+                        >
+                            {/* треба буде замінити значення */}
+                            {/* <input
+                                type="hidden"
+                                name="start_date"
+                                value="22/08/2024"
+                            />
+                            <input
+                                type="hidden"
+                                name="from_time"
+                                value="12:00"
+                            />
+                            <input
+                                type="hidden"
+                                name="end_date"
+                                value="23/08/2024"
+                            />
+                            <input
+                                type="hidden"
+                                name="end_time"
+                                value="12:00"
+                            />
+
+                            <input
+                                id="pickup_place_id"
+                                name="pickup_place_id"
+                                type="hidden"
+                            />
+                            <input
+                                id="pickup_latitude"
+                                name="pickup_latitude"
+                                type="hidden"
+                            />
+                            <input
+                                id="pickup_longitude"
+                                name="pickup_longitude"
+                                type="hidden"
+                            />
+
+                            <input
+                                id="drop_place_id"
+                                name="drop_place_id"
+                                type="hidden"
+                            />
+                            <input
+                                id="drop_latitude"
+                                name="drop_latitude"
+                                type="hidden"
+                            />
+                            <input
+                                id="drop_longitude"
+                                name="drop_longitude"
+                                type="hidden"
+                            />
+
+                            <input
+                                type="hidden"
+                                id="delivery_amount"
+                                name="delivery_amount"
+                                value="0"
+                            />
+                            <input
+                                type="hidden"
+                                id="pickup_amount"
+                                name="pickup_amount"
+                                value="0"
+                            />
+                            <input
+                                type="hidden"
+                                id="insurance_amount"
+                                name="insurance_amount"
+                                value="0"
+                            />
+                            <input
+                                type="hidden"
+                                value="3733"
+                                id="booking-car-id"
+                            /> */}
+
+                            <div
+                                className="rounded-medium-bottom p-3"
+                                id="reserve_booking"
+                            >
+                                <div className="d-flex align-items-center justify-content-between">
+                                    <span className="d-none d-lg-block fs-9 color-semantic-success fw-bold text-uppercase letter-spacing-0_5 ps-3">
+                                        {" "}
+                                        Your journey starts in …
+                                    </span>
+                                    <span
+                                        className="d-none d-lg-block fs-24 color-semantic-success text-uppercase"
+                                        id="countdown"
+                                    >
+                                        60:00
+                                        {/* {formatTime(timeLeft)} */}
+                                    </span>
+                                    <button
+                                        type="submit"
+                                        data-car-type={data.category.name}
+                                        data-id={data.id}
+                                        className={`reserve-btn m-w-100 requestModal fw-bold text-uppercase btn btn-primary ${isButtonDisabled ? 'disabled' : 'active'}`}
+                                        disabled={isButtonDisabled}
+                                    >
+                                        <span className="fs-15 letter-spacing-0_5">
+                                            Reserve
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

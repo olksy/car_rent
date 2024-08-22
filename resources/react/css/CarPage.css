@@ -94,12 +94,24 @@
     font-size: 14px;
 }
 
+.fs-9 {
+    font-size: 9px;
+}
+
+.fs-11 {
+    font-size: 11px;
+}
+
 .fs-12 {
     font-size: 12px;
 }
 
 .fs-14 {
     font-size: 14px;
+}
+
+.fs-15 {
+    font-size: 15px;
 }
 
 .fs-16 {
@@ -158,11 +170,13 @@
 }
 
 .availability-label.bg-info {
-    background: rgba(0, 159, 226, .1) !important;
+    /* background: rgba(0, 159, 226, .1) !important; */
+    background: #e2f8cf !important;
 }
 
 .color-brand-accent {
-    color: #009fe2;
+    /* color: #009fe2; */
+    color: #0ea548;
 }
 
 .calendar-check {
@@ -339,4 +353,120 @@
     display: grid !important;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-content: center;
+}
+
+#personalInfo {
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+.personal-inf {
+    color: #8c98ab;
+}
+
+.form-field-wrapper {
+    border: 1px solid #e5e5e5;
+    padding: 2px 15px;
+}
+
+.default-phone-input {
+    height: 50px;
+}
+
+.default-phone-input input {
+    background: 0 0;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 0 !important;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0 !important;
+    outline: 0;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+}
+
+.phone-number-input {
+    padding-left: 5px !important;
+}
+
+.iti {
+    display: flex !important;
+    font-size: 14px !important;
+}
+
+.iti__country-container {
+    max-height: none !important;
+    overflow: visible !important;
+    padding-left: 16px !important;
+    position: static !important;
+}
+
+.iti__selected-dial-code {
+    font-size: 14px;
+}
+
+.iti__dropdown-content {
+    width: 310px !important;
+}
+
+.default-phone-input .iti__dropdown-content {
+    margin-left: -16px !important;
+}
+
+.iti__search-input {
+    font-size: 14px;
+    border-radius: 3px;
+    border-width: 0;
+    padding: 9px 12px;
+    width: 100%;
+}
+
+.iti__country-name,
+.iti__dial-code {
+    font-size: 14px;
+}
+
+.iti__country-container:hover {
+    background-color: transparent !important;
+}
+
+/* ---SUMMARY--- */
+.title-car-mobile #summary {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-bottom: 0;
+}
+
+.book-sum {
+    color: #8c98ab;
+}
+
+/* reserve */
+@media (min-width: 992px) {
+    #reserve_booking {
+        background: #e2f8cf;
+    }
+}
+
+.rounded-medium-bottom {
+    border-radius: 0 0 10px 10px;
+}
+
+.color-semantic-success {
+    color: #0ea548;
+}
+
+.reserve-btn {
+    width: 133px;
+    height: 50px;
+}
+
+.reserve-btn:hover {
+    background-color: #0d6efd;
+}
+
+.reserve-btn span {
+    color: #fff;
 }

@@ -26,6 +26,14 @@
   letter-spacing: 0.02em;
 }
 
+.letter-spacing-0_5 {
+  letter-spacing: .05em;
+}
+
+.letter-spacing-1 {
+  letter-spacing: .1em;
+}
+
 .footer-social-block {
   gap: 10px;
 }
