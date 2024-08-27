@@ -162,7 +162,7 @@ export default function LeftColumn({ data }) {
                                     </div>
                                 </div>
 
-                                <div className="d-flex flex-row border-bottom py-1 py-lg-2">
+                                {/* <div className="d-flex flex-row border-bottom py-1 py-lg-2">
                                     <div className="col-md-6 p-0 rental-pt">
                                         2 days
                                     </div>
@@ -214,7 +214,7 @@ export default function LeftColumn({ data }) {
                                     <div className="col-md-6 p-0 rental-pt">
                                         € 414
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="d-flex flex-row border-bottom py-1 py-lg-2">
                                     <div className="col-md-6 p-0 rental-pt">
@@ -263,19 +263,7 @@ export default function LeftColumn({ data }) {
                                 className="text-decoration-none mr-2 fs-14"
                                 href="/"
                             >
-                                Prestige cars
-                            </a>
-                            <a
-                                className="text-decoration-none mr-2 fs-14"
-                                href="/"
-                            >
                                 {data.category.name} cars
-                            </a>
-                            <a
-                                className="text-decoration-none mr-2 fs-14"
-                                href="/"
-                            >
-                                Business cars
                             </a>
                         </div>
 

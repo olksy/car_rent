@@ -4,9 +4,9 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import LitePicker from "./LitePicker";
-import { useState, useRef, useEffect } from "react";
 import { format } from 'date-fns';
-import intlTelInput from 'intl-tel-input';
+import { useState, useRef, useEffect } from "react";
+import { PiWarningCircleBold } from "react-icons/pi";
 
 export default function RightColumn({ data }) {
     const [dates, setDates] = useState({ startDate: null, endDate: null });
@@ -15,6 +15,7 @@ export default function RightColumn({ data }) {
         setDates({ startDate, endDate });
     };
 
+    // --- display date, price, numOfDays, startDate, endDate---
     const calculateDaysDifference = () => {
         if (dates.startDate && dates.endDate) {
             const timeDiff =
@@ -26,8 +27,7 @@ export default function RightColumn({ data }) {
     const numberOfDays = calculateDaysDifference();
     const totalPrice = data.price * numberOfDays;
     const vaxTax = Math.round(totalPrice * 0.05);
-
-    // console.log(dates);
+    const totalPriceWTax = totalPrice + vaxTax;
 
     const formattedStartDate = dates.startDate
         ? format(new Date(dates.startDate.dateInstance), "dd MMM yyyy")
@@ -39,11 +39,23 @@ export default function RightColumn({ data }) {
     const startDateDisplay = dates.startDate ? formattedStartDate : "Choose";
     const endDateDisplay = dates.endDate ? formattedEndDate : "Choose";
 
+    const [dateError, setdateError] = useState(null);
+
+    const handleError = (message) => {
+        setdateError(message);
+    };
+    // --- display date, price, numOfDays, startDate, endDate---
+
+    // --- for phone number---
+    const [errorMsg, setErrorMsg] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const inputRef = useRef(null);
+    const itiRef = useRef(null);
+    const errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
 
     useEffect(() => {
         if (inputRef.current) {
-            const iti = intlTelInput(inputRef.current, {
+            itiRef.current = window.intlTelInput(inputRef.current, {
                 utilsScript:
                     "https://cdn.jsdelivr.net/npm/intl-tel-input@24.1.3/build/js/utils.js",
                 initialCountry: "ae",
@@ -52,17 +64,47 @@ export default function RightColumn({ data }) {
                 strictMode: true,
             });
 
+            inputRef.current.addEventListener("input", () => {
+                setPhoneNumber(itiRef.current.getNumber());
+            });
+
             return () => {
-                if (iti) {
-                    iti.destroy();
+                if (itiRef.current) {
+                    itiRef.current.destroy();
                 }
             };
         }
     }, []);
 
-    // const [timeLeft, setTimeLeft] = useState(60 * 60);
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const reset = () => {
+        inputRef.current.closest('.form-field-wrapper').classList.remove('error');
+        setErrorMsg("");
+    };
 
+    const showError = (msg) => {
+        inputRef.current.closest('.form-field-wrapper').classList.add('error');
+        setErrorMsg(msg);
+    };
+
+    const handleValidate = () => {
+        reset();
+        const input = inputRef.current;
+    
+        if (!input.value.trim()) {
+          showError('Required');
+          return false;
+        } else if (itiRef.current.isValidNumber()) {
+          return true;
+        } else {
+          const errorCode = itiRef.current.getValidationError();
+          const msg = errorMap[errorCode] || 'Invalid number';
+          showError(msg);
+          return false;
+        }
+      };
+    // --- for phone number---
+
+    // const [timeLeft, setTimeLeft] = useState(60 * 60);
     // useEffect(() => {
     //     const updateCountdown = () => {
     //         setTimeLeft(prevTime => {
@@ -84,6 +126,8 @@ export default function RightColumn({ data }) {
     //     return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
     // };
 
+    // --- mini validation for button --- 
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     useEffect(() => {
         if (numberOfDays === 0 || dates.startDate === null) {
             setIsButtonDisabled(true);
@@ -91,7 +135,48 @@ export default function RightColumn({ data }) {
             setIsButtonDisabled(false);
         }
     }, [numberOfDays, dates]);
+    // --- mini validation for button ---
 
+    // --- time start/end for form ---
+    const [time, setTime] = useState("12:00");
+    const handleTimeChange = (event) => {
+        setTime(event.target.value);
+    };
+    // --- time start/end for form ---
+
+    // --- submitting data---
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!handleValidate()) {
+            return;
+        }
+
+        const formatDate = (date) =>
+            date ? format(new Date(date.dateInstance), "yyyy-MM-dd") : "";
+    
+        const formData = {
+            start_date: formatDate(dates.startDate),
+            end_date: formatDate(dates.endDate),
+            number: phoneNumber,
+            from_time: time,
+            end_time: time,
+            car_id: data.id,
+        };
+
+        // try {
+        //     const response = await axios.post(
+        //         "http://127.0.0.1:8002/api/bookings",
+        //         formData
+        //     );
+        //     console.log("Booking saved:", response.data);
+        // } catch (error) {
+        //     console.error("Error saving booking:", error);
+        // }
+        console.log(formData);
+    };
+    // --- submitting data---
+    
     return (
         <>
             <div className="col-12 col-lg-5 p-0 d-none d-lg-block">
@@ -259,32 +344,33 @@ export default function RightColumn({ data }) {
                                             name="from_time"
                                             className="form-control fs-14"
                                             id="select-start-time"
-                                            defaultValue={"12:00"}
+                                            value={time}
+                                            onChange={handleTimeChange}
                                         >
-                                            <option>00:00</option>
-                                            <option>01:00</option>
-                                            <option>02:00</option>
-                                            <option>03:00</option>
-                                            <option>04:00</option>
-                                            <option>05:00</option>
-                                            <option>06:00</option>
-                                            <option>07:00</option>
-                                            <option>08:00</option>
-                                            <option>09:00</option>
-                                            <option>10:00</option>
-                                            <option>11:00</option>
-                                            <option>12:00</option>
-                                            <option>13:00</option>
-                                            <option>14:00</option>
-                                            <option>15:00</option>
-                                            <option>16:00</option>
-                                            <option>17:00</option>
-                                            <option>18:00</option>
-                                            <option>19:00</option>
-                                            <option>20:00</option>
-                                            <option>21:00</option>
-                                            <option>22:00</option>
-                                            <option>23:00</option>
+                                            <option value="00:00">00:00</option>
+                                            <option value="01:00">01:00</option>
+                                            <option value="02:00">02:00</option>
+                                            <option value="03:00">03:00</option>
+                                            <option value="04:00">04:00</option>
+                                            <option value="05:00">05:00</option>
+                                            <option value="06:00">06:00</option>
+                                            <option value="07:00">07:00</option>
+                                            <option value="08:00">08:00</option>
+                                            <option value="09:00">09:00</option>
+                                            <option value="10:00">10:00</option>
+                                            <option value="11:00">11:00</option>
+                                            <option value="12:00">12:00</option>
+                                            <option value="13:00">13:00</option>
+                                            <option value="14:00">14:00</option>
+                                            <option value="15:00">15:00</option>
+                                            <option value="16:00">16:00</option>
+                                            <option value="17:00">17:00</option>
+                                            <option value="18:00">18:00</option>
+                                            <option value="19:00">19:00</option>
+                                            <option value="20:00">20:00</option>
+                                            <option value="21:00">21:00</option>
+                                            <option value="22:00">22:00</option>
+                                            <option value="23:00">23:00</option>
                                         </select>
                                         <IoIosArrowDown className="arrow-down-svg fs-14" />
                                     </div>
@@ -294,8 +380,26 @@ export default function RightColumn({ data }) {
 
                         {/* ---CALENDAR */}
                         <div className="row mt-2 mb-2">
-                            <LitePicker onDatesSelected={handleDatesSelected} />
+                            <LitePicker
+                                onDatesSelected={handleDatesSelected}
+                                onError={handleError}
+                            />
                         </div>
+                        {dateError && (
+                            <div className="rental-min-warning">
+                                <div
+                                    className="d-flex align-items-center bg-warning rounded-small px-2 py-1 mb-3"
+                                    style={{ "--bs-bg-opacity": 0.15 }}
+                                >
+                                    <span className="warning-svg d-flex">
+                                        <PiWarningCircleBold fill="#ffc107" className="fs-18"/>
+                                    </span>
+                                    <span className="fs-14 text-warning">
+                                        {dateError}
+                                    </span>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {/* ---PERSONAL INFO */}
@@ -323,23 +427,31 @@ export default function RightColumn({ data }) {
                                 </div>
 
                                 {/* ---PHONE NUMBER */}
-                                {/* додати перевірку на правильність номеру телефона */}
                                 <div className="mb-3">
                                     <div className="form-field-wrapper p-0 fs-14 d-flex justify-content-start flex-wrap rounded-small default-phone-input">
                                         <label className="fs-9 ps-3 required pt-1 fw-bolder letter-spacing-0_5 lh-1 text-uppercase w-100 m-0 text-start">
                                             Phone number
                                         </label>
                                         <input
+                                            id="reservation_form_phone-input"
                                             ref={inputRef}
                                             type="tel"
-                                            pattern="[0-9]*"
                                             inputMode="numeric"
-                                            id="reservation_form_phone-input"
                                             className="phone-number-input"
                                             required
                                             autoComplete="off"
+                                            // onChange={reset}
+                                            // onKeyUp={reset}
                                         />
                                     </div>
+                                    {errorMsg && (
+                                        <div
+                                            id="error-msg"
+                                            className="fs-14 fw-bolder text-danger w-100 text-end"
+                                        >
+                                            {errorMsg}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </form>
@@ -393,7 +505,7 @@ export default function RightColumn({ data }) {
                                     className="fs-24 font-weight-normal flex-shrink-0"
                                     id="total_price"
                                 >
-                                    € {totalPrice + vaxTax}
+                                    € {totalPriceWTax}
                                 </span>
                             </div>
                         </div>
@@ -401,88 +513,42 @@ export default function RightColumn({ data }) {
                         {/* Reserve */}
                         <form
                             id="requestBookings"
-                            method="/"
+                            method="POST"
+                            onSubmit={handleSubmit}
                             className="rc_validate"
                             data-validate="true"
-                            // noValidate="novalidate"
                         >
-                            {/* треба буде замінити значення */}
-                            {/* <input
-                                type="hidden"
-                                name="start_date"
-                                value="22/08/2024"
-                            />
                             <input
                                 type="hidden"
-                                name="from_time"
-                                value="12:00"
+                                name="start_date"
+                                value={
+                                    dates.startDate
+                                        ? dates.startDate.dateInstance
+                                        : ""
+                                }
                             />
                             <input
                                 type="hidden"
                                 name="end_date"
-                                value="23/08/2024"
+                                value={
+                                    dates.endDate
+                                        ? dates.endDate.dateInstance
+                                        : ""
+                                }
                             />
                             <input
                                 type="hidden"
-                                name="end_time"
-                                value="12:00"
+                                name="number"
+                                value={phoneNumber}
                             />
+                            <input
+                                type="hidden"
+                                name="from_time"
+                                value={time}
+                            />
+                            <input type="hidden" name="end_time" value={time} />
 
-                            <input
-                                id="pickup_place_id"
-                                name="pickup_place_id"
-                                type="hidden"
-                            />
-                            <input
-                                id="pickup_latitude"
-                                name="pickup_latitude"
-                                type="hidden"
-                            />
-                            <input
-                                id="pickup_longitude"
-                                name="pickup_longitude"
-                                type="hidden"
-                            />
-
-                            <input
-                                id="drop_place_id"
-                                name="drop_place_id"
-                                type="hidden"
-                            />
-                            <input
-                                id="drop_latitude"
-                                name="drop_latitude"
-                                type="hidden"
-                            />
-                            <input
-                                id="drop_longitude"
-                                name="drop_longitude"
-                                type="hidden"
-                            />
-
-                            <input
-                                type="hidden"
-                                id="delivery_amount"
-                                name="delivery_amount"
-                                value="0"
-                            />
-                            <input
-                                type="hidden"
-                                id="pickup_amount"
-                                name="pickup_amount"
-                                value="0"
-                            />
-                            <input
-                                type="hidden"
-                                id="insurance_amount"
-                                name="insurance_amount"
-                                value="0"
-                            />
-                            <input
-                                type="hidden"
-                                value="3733"
-                                id="booking-car-id"
-                            /> */}
+                            <input id="car_id" value={data.id} type="hidden" />
 
                             <div
                                 className="rounded-medium-bottom p-3"
@@ -504,8 +570,13 @@ export default function RightColumn({ data }) {
                                         type="submit"
                                         data-car-type={data.category.name}
                                         data-id={data.id}
-                                        className={`reserve-btn m-w-100 requestModal fw-bold text-uppercase btn btn-primary ${isButtonDisabled ? 'disabled' : 'active'}`}
+                                        className={`reserve-btn m-w-100 requestModal fw-bold text-uppercase btn btn-primary ${
+                                            isButtonDisabled
+                                                ? "disabled"
+                                                : "active"
+                                        }`}
                                         disabled={isButtonDisabled}
+                                        onClick={handleValidate}
                                     >
                                         <span className="fs-15 letter-spacing-0_5">
                                             Reserve

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->date("start_date");
             $table->date("end_date");
             $table->string("number");
+            $table->string("from_time");
+            $table->string("end_time");
             $table->unsignedBigInteger("car_id");
             $table->foreign("car_id")->references("id")->on("cars")
                 ->cascadeOnDelete()->cascadeOnUpdate();

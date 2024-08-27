@@ -1,7 +1,3 @@
-.fs-30 {
-    font-size: 30px;
-}
-
 .__swiper-style {
     width: 588px!important;
     height: 366px!important;
@@ -124,6 +120,10 @@
 
 .fs-24 {
     font-size: 24px;
+}
+
+.fs-30 {
+    font-size: 30px;
 }
 
 .bg-badge-info {
@@ -355,6 +355,10 @@
     justify-content: center;
 }
 
+.warning-svg {
+    padding-right: .5rem;
+}
+
 #personalInfo {
     border-radius: 15px;
     background-color: #fff;
@@ -367,6 +371,10 @@
 .form-field-wrapper {
     border: 1px solid #e5e5e5;
     padding: 2px 15px;
+}
+
+.form-field-wrapper.error {
+    outline: 1px solid #dc3545;
 }
 
 .default-phone-input {
