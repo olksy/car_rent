@@ -15,7 +15,7 @@ export default function CarPage() {
     useEffect(() => {
         setLoading(true);
         axios
-        .get(`http://127.0.0.1:8002/api/cars/${slug}/${id}/detail`)
+        .get(`http://127.0.0.1:8000/api/cars/${slug}/${id}/detail`)
         .then((response) => {
             setData(response.data);
             setLoading(false);

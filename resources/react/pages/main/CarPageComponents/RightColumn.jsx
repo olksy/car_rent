@@ -166,7 +166,7 @@ export default function RightColumn({ data }) {
 
         // try {
         //     const response = await axios.post(
-        //         "http://127.0.0.1:8002/api/bookings",
+        //         "http://127.0.0.1:8000/api/bookings",
         //         formData
         //     );
         //     console.log("Booking saved:", response.data);

@@ -8,7 +8,7 @@ function App() {
   const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8002/api/cars')
+        axios.get('http://127.0.0.1:8000/api/cars')
             .then(response => {
                 setData(response.data);
             })
@@ -16,8 +16,7 @@ function App() {
                 console.error("There was an error fetching the data!", error);
             });
     }, []);
-    // console.log(data);
-
+    
     return (
         <>
             <Router>
