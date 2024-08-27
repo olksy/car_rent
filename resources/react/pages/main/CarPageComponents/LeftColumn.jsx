@@ -12,26 +12,26 @@ export default function LeftColumn({ data }) {
     const swiperRef = useRef(null);
 
     const handlePrev = () => {
-        if (swiperRef.current) {
-            swiperRef.current.slidePrev();
+        if (swiperRef.current && swiperRef.current.swiper) {
+            swiperRef.current.swiper.slidePrev();
         }
     };
 
     const handleNext = () => {
-        if (swiperRef.current) {
-            swiperRef.current.slideNext();
+        if (swiperRef.current && swiperRef.current.swiper) {
+            swiperRef.current.swiper.slideNext();
         }
     };
 
     const handleThumbClick = (index) => {
-        if (swiperRef.current) {
+        if (swiperRef.current && swiperRef.current.swiper) {
             swiperRef.current.swiper.slideTo(index);
             setActiveIndex(index);
         }
     };
 
     const handleSlideChange = () => {
-        if (swiperRef.current) {
+        if (swiperRef.current && swiperRef.current.swiper) {
             setActiveIndex(swiperRef.current.swiper.realIndex);
         }
     };
@@ -41,6 +41,7 @@ export default function LeftColumn({ data }) {
                 {/* Main Image */}
                 <div className="mb-1 mx-md-0">
                     <Swiper
+                        ref={swiperRef}
                         className="__swiper-style"
                         loop={true}
                         modules={[Navigation]}
@@ -50,17 +51,10 @@ export default function LeftColumn({ data }) {
                             prevEl: ".my-prev-button",
                             nextEl: ".my-next-button",
                         }}
-                        ref={swiperRef}
                         onSlideChange={handleSlideChange}
                     >
-                        <PrevBtn
-                            className="my-prev-button"
-                            onClick={handlePrev}
-                        />
-                        <NextBtn
-                            className="my-next-button"
-                            onClick={handleNext}
-                        />
+                        <PrevBtn className="my-prev-button" onClick={handlePrev} />
+                        <NextBtn className="my-next-button" onClick={handleNext} />
                         {/* будуть братись з бд картинки */}
                         <SwiperSlide>
                             <div className="gallery-item-link first-image cursor-pointer h-100">
