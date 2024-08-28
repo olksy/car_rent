@@ -1,5 +1,5 @@
 @extends('layouts.admin')
 
 @section('content')
-2222
+    <h1>Welcome {{ Auth::user()->name }}!</h1>
 @endsection
