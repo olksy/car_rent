@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h3>Admin profile</h3>
+    <h1>Admin profile</h1>
     <p>Name: {{ $user->name }}</p>
     <p>Email: {{ $user->email }}</p>
 
@@ -18,3 +18,5 @@
         </button>
     </form>
 @endsection
+
+<!-- можна додати change password -->

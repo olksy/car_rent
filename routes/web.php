@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\LocaleController;
 use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
-    PostController,
     DashboardController,
     CarsController,
     UsersController,
@@ -26,24 +26,65 @@ Route::get('/', function () {
 Route::get('locale/{lang}', [LocaleController::class, 'setLocale']);
 
 Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function () {
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::middleware([RedirectIfAuthenticated::class])->group(function() {
+        Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
+        Route::post('/login', [AuthController::class, 'login']);
+        Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('admin.register');
+        Route::post('/register', [AuthController::class, 'register']);
+    });
+    
     Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
-    Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('admin.register');
-    Route::post('/register', [AuthController::class, 'register']);
     
     Route::middleware([Authenticate::class])->group(function() {
-        Route::get('/', DashboardController::class)->name('admin.dashboard');
+        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/profile', ProfileController::class)->name('admin.profile');
-        Route::get('/post', PostController::class)->name('admin.post');
-        Route::get('/cars', CarsController::class)->name('admin.cars');
-        Route::get('/users', UsersController::class)->name('admin.users');
+
+        // for cars
+        Route::get('/cars', [CarsController::class, 'index'])->name('admin.cars.index');
+        Route::post('/cars', [CarsController::class, 'store'])->name('admin.cars.store');
+        Route::get('/cars/create', [CarsController::class, 'create'])->name('admin.cars.create');
+        Route::get('/cars/{car}/edit', [CarsController::class, 'edit'])->name('admin.cars.edit');
+        Route::put('/cars/{car}', [CarsController::class, 'update'])->name('admin.cars.update');
+        Route::delete('/cars/{car}', [CarsController::class, 'destroy'])->name('admin.cars.destroy');
+
+        // for users
+        Route::get('/users', [UsersController::class, 'index'])->name('admin.users.index');
+        Route::get('/users/{user}/edit', [UsersController::class, 'edit'])->name('admin.users.edit');
+        Route::put('/users/{user}', [UsersController::class, 'update'])->name('admin.users.update');
+        Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('admin.users.destroy');
+        
+        // for brands
+        Route::get('/brands', [BrandsController::class, 'index'])->name('admin.brands.index');
+        Route::post('/brands', [BrandsController::class, 'store'])->name('admin.brands.store');
+        Route::get('/brands/create', [BrandsController::class, 'create'])->name('admin.brands.create');
+        Route::get('/brands/{brand}/edit', [BrandsController::class, 'edit'])->name('admin.brands.edit');
+        Route::put('/brands/{brand}', [BrandsController::class, 'update'])->name('admin.brands.update');
+        Route::delete('/brands/{brand}', [BrandsController::class, 'destroy'])->name('admin.brands.destroy');
+
+        // for bookings
+        Route::get('/bookings', [BookingsController::class, 'index'])->name('admin.bookings.index');
+        Route::get('/bookings/{booking}/edit', [BookingsController::class, 'edit'])->name('admin.bookings.edit');
+        Route::put('/bookings/{booking}', [BookingsController::class, 'update'])->name('admin.bookings.update');
+        Route::delete('/bookings/{booking}', [BookingsController::class, 'destroy'])->name('admin.bookings.destroy');
+
+        //for categories
+        Route::get('/categories', [CategoriesController::class, 'index'])->name('admin.categories.index');
+        Route::post('/categories', [CategoriesController::class, 'store'])->name('admin.categories.store');
+        Route::get('/categories/create', [CategoriesController::class, 'create'])->name('admin.categories.create');
+        Route::get('/categories/{category}/edit', [CategoriesController::class, 'edit'])->name('admin.categories.edit');
+        Route::put('/categories/{category}', [CategoriesController::class, 'update'])->name('admin.categories.update');
+        Route::delete('/categories/{category}', [CategoriesController::class, 'destroy'])->name('admin.categories.destroy');
+
+        // for body_types
+        Route::get('/body_types', [BodyTypesController::class, 'index'])->name('admin.body_types.index');
+        Route::post('/body_types', [BodyTypesController::class, 'store'])->name('admin.body_types.store');
+        Route::get('/body_types/create', [BodyTypesController::class, 'create'])->name('admin.body_types.create');
+        Route::get('/body_types{body_type}/edit', [BodyTypesController::class, 'edit'])->name('admin.body_types.edit');
+        Route::put('/body_types/{body_type}', [BodyTypesController::class, 'update'])->name('admin.body_types.update');
+        Route::delete('/body_types/{body_type}', [BodyTypesController::class, 'destroy'])->name('admin.body_types.destroy');
+
+        // etc.
         Route::get('/images', ImagesController::class)->name('admin.images');
         Route::get('/cars_images', CarsImagesController::class)->name('admin.cars_images');
-        Route::get('/categories', CategoriesController::class)->name('admin.categories');
-        Route::get('/brands', BrandsController::class)->name('admin.brands');
-        Route::get('/bookings', BookingsController::class)->name('admin.bookings');
-        Route::get('/body_types', BodyTypesController::class)->name('admin.body_types');
     });
-
 });

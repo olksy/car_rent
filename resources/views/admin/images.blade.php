@@ -1,5 +1,5 @@
 @extends('layouts.admin')
 
 @section('content')
-Images
+    <h1>Images</h1>
 @endsection

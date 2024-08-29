@@ -7,6 +7,7 @@ import LitePicker from "./LitePicker";
 import { format } from 'date-fns';
 import { useState, useRef, useEffect } from "react";
 import { PiWarningCircleBold } from "react-icons/pi";
+import axios from "axios";
 
 export default function RightColumn({ data }) {
     const [dates, setDates] = useState({ startDate: null, endDate: null });
