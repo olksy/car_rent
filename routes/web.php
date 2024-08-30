@@ -84,7 +84,6 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function 
         Route::delete('/body_types/{body_type}', [BodyTypesController::class, 'destroy'])->name('admin.body_types.destroy');
 
         // etc.
-        Route::get('/images', ImagesController::class)->name('admin.images');
         Route::get('/cars_images', CarsImagesController::class)->name('admin.cars_images');
     });
 });

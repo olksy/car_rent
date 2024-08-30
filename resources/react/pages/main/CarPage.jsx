@@ -25,6 +25,7 @@ export default function CarPage() {
             setLoading(false);
         });
     }, [slug, id]);
+    console.log(data);
     
     if(loading) {
         return (

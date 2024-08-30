@@ -16,9 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("car_id");
             $table->foreign("car_id")->references("id")->on("cars")
                 ->cascadeOnDelete()->cascadeOnUpdate();
-            $table->unsignedBigInteger("image_id");
-            $table->foreign("image_id")->references("id")->on("images")
-                ->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string("path");
             $table->timestamps();
         });
     }
