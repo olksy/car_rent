@@ -29,8 +29,8 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function 
     Route::middleware([RedirectIfAuthenticated::class])->group(function() {
         Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
         Route::post('/login', [AuthController::class, 'login']);
-        Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('admin.register');
-        Route::post('/register', [AuthController::class, 'register']);
+        // Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('admin.register');
+        // Route::post('/register', [AuthController::class, 'register']);
     });
     
     Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');

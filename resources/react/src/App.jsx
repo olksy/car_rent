@@ -1,4 +1,5 @@
 import CarPage from "../pages/main/CarPage";
+import Index from "../pages/Index";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -21,6 +22,10 @@ function App() {
         <>
             <Router>
                 <Routes>
+                    <Route
+                        path="/"
+                        element={<Index data={data} />}
+                    />
                     <Route
                         path="/cars/:slug/:id/detail"
                         element={<CarPage />}

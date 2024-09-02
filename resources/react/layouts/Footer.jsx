@@ -9,13 +9,13 @@ export default function Footer() {
                   {/* ---Some links */}
                   <div className="py-4 border-bottom d-flex flex-lg-row flex-column">
                       <div className="footer-pages-block py-lg-2 d-flex flex-grow-1 align-items-center mt-4 mt-lg-0">
-                          <a
+                          {/* <a
                               className="text-decoration-none mb-2 letter-spacing-0_2"
                               href="/"
                               title="Learn more about one of the largest car rental marketplace in the UAE"
                           >
                               About us
-                          </a>
+                          </a> */}
 
                           <a
                               className="text-decoration-none mb-2 letter-spacing-0_2"

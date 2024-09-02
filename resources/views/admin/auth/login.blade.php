@@ -60,9 +60,9 @@
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                     </div>
                 </div>
-                <div class="col-12 mt-2">
+                <!-- <div class="col-12 mt-2">
                     <span>Don't have an account? <a href="/admin/register">Register!</a></span>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>
