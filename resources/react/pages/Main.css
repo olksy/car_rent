@@ -74,6 +74,17 @@ ul {
    position: relative;
 }
 
+.header-layout {
+  display: flex;
+  align-items: center;
+  padding: 0 170px;
+  justify-content: space-between;
+   position: relative;
+   background-color: #13428d;
+   max-width: 100vw;
+   
+}
+
 .header-actions button {
    margin-left: 20px;
 }
@@ -570,13 +581,23 @@ input:focus {
 }
 
 .car-offer img{
-  width: 100%;
-  height: auto;
+  width: auto;
   transition: transform 0.3s ease-in-out;
 }
 
 .car-offer:hover img {
   transform: scale(1.05);
+}
+
+.partners-list-item img {
+  overflow: hidden;
+  position: relative;
+  border-radius: 10%;
+  transition: transform 0.2s ease-in-out;
+}
+
+.partners-list-item:hover img {
+  transform: scale(1.02);
 }
 
 .color-shades-600 {
@@ -596,6 +617,8 @@ input:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #f7f8fa;
+  border-radius: 10px;
 }
 
 .reviews-title h3 {
@@ -607,6 +630,8 @@ input:focus {
   margin-top: 50px;
   display: flex;
   justify-content: space-between;
+  background-color: #f7f8fa;
+  border-radius: 10px;
 }
 
 .partners-title {

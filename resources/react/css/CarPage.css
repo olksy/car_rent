@@ -1,8 +1,20 @@
 .__swiper-style {
-    width: 588px!important;
-    height: 366px!important;
+    /* width: 588px!important; */
+    height: 364px;
     margin-left: 0!important;
     margin-right: 0!important;
+}
+
+@media (max-width: 1189px) {
+    .__swiper-style {
+        height: 300px;
+    }
+}
+
+@media (max-width: 991px) {
+    .__swiper-style {
+        height: 420px;
+    }
 }
 
 .my-prev-button {
@@ -124,6 +136,18 @@
 
 .fs-30 {
     font-size: 30px;
+}
+
+@media (max-width: 991px) {
+    .fs-m-18 {
+        font-size: 18px !important;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1140px;
+    }
 }
 
 .bg-badge-info {

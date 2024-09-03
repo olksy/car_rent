@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import RightColumn from "./CarPageComponents/RightColumn";
 import LeftColumn from "./CarPageComponents/LeftColumn";
+import Header from "../../layouts/Header";
 
 export default function CarPage() {
     const [data, setData] = useState([]);
@@ -39,11 +40,11 @@ export default function CarPage() {
     }
 
     const formattedBrandName = data.brand.name.toLowerCase().replace(/ /g, '-');
-    
     return (
         <>
-            <div className="bg-white pt-lg-4">
-                <div className="container">
+            <div className="bg-white">
+                <Header />
+                <div className="container pt-lg-4">
                     {/* Car name */}
                     <div className="pb-3 pt-3 mt-0 pt-lg-0 d-flex align-items-center mt-lg-0">
                         <span className="mr-2 d-flex align-items-center">
@@ -55,7 +56,7 @@ export default function CarPage() {
                             />
                         </span>
 
-                        <h1 className="fs-30 fw-normal mb-0">
+                        <h1 className="fs-30 fs-m-18 fw-normal mb-0">
                             Rent {data.brand.name} {data.title} ({data.color}),{" "}
                             {data.year} in Dubai
                         </h1>
@@ -66,7 +67,6 @@ export default function CarPage() {
                         className="d-flex position-relative justify-content-between"
                         style={{ columnGap: "60px" }}
                     >
-                        {/* в лефт колумн змінити параметри фото в свайпері, бо при мобайл режимі не правильно працює */}
                         <LeftColumn data={data} />
 
                         <RightColumn data={data} />

@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CarImagesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GetCarsData;
@@ -22,3 +23,4 @@ Route::get('/cars', [GetCarsData::class, 'index']);
 Route::get('/cars/{slug}/{id}/detail', [CarController::class, 'show']);
 Route::post('/bookings', [BookingController::class, 'store']);
 Route::get('/brands', [BrandController::class, 'index']);
+Route::get('/car_images', [CarImagesController::class, 'index']);

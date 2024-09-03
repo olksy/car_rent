@@ -14,28 +14,38 @@ import { IoGridOutline } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import strings from "./images/icons/strings.png";
 
 
 export default function Index({ data }) {
-    console.log(data);
     const [brands, setBrands] = useState([]);
+    const [images, setImages] = useState([]);
     useEffect(() => {
         axios
             .get("http://127.0.0.1:8000/api/brands")
             .then((response) => setBrands(response.data))
             .catch((error) => console.error("Error fetching brands:", error));
+
+        axios
+            .get("http://127.0.0.1:8000/api/car_images")
+            .then((response) => setImages(response.data))
+            .catch((error) =>
+                console.error("Error fetching car images:", error)
+            );
     }, []);
 
 
     const filteredLuxuryCars = data.filter(car => car.category_id === 2).slice(0, 4);
     const filteredSUVCars = data.filter(car => car.body_type_id === 2).slice(0, 4);
     const filteredSportsCars = data.filter(car => car.category_id === 7).slice(0, 4);
+
+    const pathToImg = 'http://127.0.0.1:8000/storage/images';
   
     return (
         <>
             <header className="header wrapper">
                 <img
-                    src="images/icons/strings.png"
+                    src={strings}
                     className="strings"
                     width="32"
                     height="32"
@@ -43,7 +53,7 @@ export default function Index({ data }) {
                 />
                 <div className="header-actions">
                     <div className="header-logo">
-                        <a href="#" className="text-decoration-none">
+                        <a href="/" className="text-decoration-none mr-2">
                             <img
                                 src="https://renty.ae/assets-nd/icons/site/logo-dark.svg"
                                 alt="logo"
@@ -119,71 +129,78 @@ export default function Index({ data }) {
                 </div>
                 <div className="car-types">
                     <div className="car-type car-block">
-                        <img
-                            src="https://renty.ae/assets-nd/icons/desc-car-types/luxury.svg"
-                            alt="Luxury"
-                        />
+                        <a href="/cars/luxury">
+                            <img
+                                src="https://renty.ae/assets-nd/icons/desc-car-types/luxury.svg"
+                                alt="Luxury"
+                            />
+                        </a>
                         Luxury
                     </div>
                     <div className="car-block">
-                        <img
-                            src="https://renty.ae/assets-nd/icons/desc-car-types/economy-cars.svg"
-                            alt="Economy"
-                        />
+                        <a href="/cars/economy">
+                            <img
+                                src="https://renty.ae/assets-nd/icons/desc-car-types/economy-cars.svg"
+                                alt="Economy"
+                            />
+                        </a>
                         Economy
                     </div>
                     <div className="car-block">
-                        <img
-                            src="https://renty.ae/assets-nd/icons/desc-car-types/sports-cars.svg"
-                            alt="Sports"
-                        />
+                        <a href="/cars/sports">
+                            <img
+                                src="https://renty.ae/assets-nd/icons/desc-car-types/sports-cars.svg"
+                                alt="Sports"
+                            />
+                        </a>
                         Sports
                     </div>
                     <div className="car-block">
-                        <img
-                            src="https://renty.ae/assets/icons/cars/suv.svg"
-                            alt="SUV"
-                        />
+                        <a href="/cars/suv">
+                            <img
+                                src="https://renty.ae/assets/icons/cars/suv.svg"
+                                alt="SUV"
+                            />
+                        </a>
                         SUV
                     </div>
                     <div className="car-block">
-                        <img
-                            src="https://renty.ae/assets/icons/cars/convertible.svg"
-                            width="61"
-                            height="31"
-                            alt="Convertible"
-                        />
+                        <a href="/cars/convertible">
+                            <img
+                                src="https://renty.ae/assets/icons/cars/convertible.svg"
+                                width="61"
+                                height="31"
+                                alt="Convertible"
+                            />
+                        </a>
                         Convertible
                     </div>
                     <div className="car-block">
-                        <img
-                            src="https://renty.ae/assets-nd/icons/desc-car-types/business.svg"
-                            alt="Business"
-                        />
+                        <a href="/cars/business">
+                            <img
+                                src="https://renty.ae/assets-nd/icons/desc-car-types/business.svg"
+                                alt="Business"
+                            />
+                        </a>
                         Business
                     </div>
                     <div className="car-block">
-                        <img
-                            src="https://renty.ae/assets-nd/icons/desc-car-types/electric-ev-cars.svg"
-                            alt="Electric (EV)"
-                        />
+                        <a href="/cars/electric">
+                            <img
+                                src="https://renty.ae/assets-nd/icons/desc-car-types/electric-ev-cars.svg"
+                                alt="Electric (EV)"
+                            />
+                        </a>
                         Electric (EV)
                     </div>
                     <div className="car-block">
-                        <img
-                            src="https://renty.ae/assets/icons/cars/van.svg"
-                            alt="VAN"
-                        />
+                        <a href="/cars/van">
+                            <img
+                                src="https://renty.ae/assets/icons/cars/van.svg"
+                                alt="VAN"
+                            />
+                        </a>
                         VAN
-                    </div>
-                </div>
-                <div className="categories">
-                    <div className="categories-title">
-                        <h5>
-                            <a href="#" className="text-decoration-none">
-                                All categories
-                            </a>
-                        </h5>
                     </div>
                 </div>
             </section>
@@ -280,10 +297,12 @@ export default function Index({ data }) {
 
             <section className="Reviews-partners">
                 <div className="reviews-container">
-                    <div className="reviews">
+                    <div className="reviews px-5 py-4">
                         <div className="reviews-title">
                             <h3>Why you should rent a car with us?</h3>
-                            <p>#1 car rental company in Dubai on Google</p>
+                            <p className="fs-16">
+                                #1 car rental company in Dubai on Google
+                            </p>
                         </div>
                         <div className="reviews-location">
                             <a
@@ -310,9 +329,9 @@ export default function Index({ data }) {
                             </a>
                         </div>
                     </div>
-                    <div className="partners">
+                    <div className="partners px-3 py-3">
                         <div className="partners-title">
-                            <h4>Official partners with</h4>
+                            <h4 className="fs-24">Official partners with</h4>
                         </div>
                         <div className="partners-list">
                             <a
@@ -388,10 +407,12 @@ export default function Index({ data }) {
                     </h6>
                 </div>
                 <div className="car-offers">
-                    {/* змінити всюди фото */}
                     {filteredSportsCars.map((car) => {
                         const brand = brands.find(
                             (brand) => brand.id === car.brand_id
+                        );
+                        const carImage = images.find(
+                            (image) => image.car_id === car.id
                         );
 
                         return (
@@ -403,7 +424,7 @@ export default function Index({ data }) {
                                     <div className="car-offer-img rounded-medium">
                                         <img
                                             className="rounded-medium"
-                                            src="https://renty.ae/cdn-cgi/image/format=auto,fit=contain,width=408,height=258,sharpen=0/https://renty.ae/uploads/car/photo/l/black_mercedes-cla-kit_2021_4917_main_e13877f219420674a36fe5c178968320.jpg"
+                                            src={carImage ? `${pathToImg}/${car.id}/${carImage.path}` : `${pathToImg}/default_image.png`}
                                             title={`Hiring ${brand.name} ${car.title}`}
                                             alt={`Image of ${brand.name} ${car.title}`}
                                             loading="lazy"
@@ -438,6 +459,7 @@ export default function Index({ data }) {
                         const brand = brands.find(
                             (brand) => brand.id === car.brand_id
                         );
+                        const carImage = images.find((image) => image.car_id === car.id);
 
                         return (
                             <div key={car.id} className="car-offer">
@@ -448,7 +470,7 @@ export default function Index({ data }) {
                                     <div className="car-offer-img rounded-medium">
                                         <img
                                             className="rounded-medium"
-                                            src="https://renty.ae/cdn-cgi/image/format=auto,fit=contain,width=408,height=258,sharpen=0/https://renty.ae/uploads/car/photo/l/black_mercedes-cla-kit_2021_4917_main_e13877f219420674a36fe5c178968320.jpg"
+                                            src={carImage ? `${pathToImg}/${car.id}/${carImage.path}` : `${pathToImg}/default_image.png`}
                                             title={`Hiring ${brand.name} ${car.title}`}
                                             alt={`Image of ${brand.name} ${car.title}`}
                                             loading="lazy"
@@ -484,6 +506,7 @@ export default function Index({ data }) {
                         const brand = brands.find(
                             (brand) => brand.id === car.brand_id
                         );
+                        const carImage = images.find((image) => image.car_id === car.id);
 
                         return (
                             <div key={car.id} className="car-offer">
@@ -494,7 +517,7 @@ export default function Index({ data }) {
                                     <div className="car-offer-img rounded-medium">
                                         <img
                                             className="rounded-medium"
-                                            src="https://renty.ae/cdn-cgi/image/format=auto,fit=contain,width=408,height=258,sharpen=0/https://renty.ae/uploads/car/photo/l/black_mercedes-cla-kit_2021_4917_main_e13877f219420674a36fe5c178968320.jpg"
+                                            src={carImage ? `${pathToImg}/${car.id}/${carImage.path}` : `${pathToImg}/default_image.png`}
                                             title={`Hiring ${brand.name} ${car.title}`}
                                             alt={`Image of ${brand.name} ${car.title}`}
                                             loading="lazy"
@@ -553,8 +576,8 @@ export default function Index({ data }) {
                             height="48"
                             alt="Car Rental Platform"
                         />
-                        <h4>Car Rental Platform</h4>
-                        <p>
+                        <h4 className="fs-18">Car Rental Platform</h4>
+                        <p className="fs-16">
                             Renty is a leading online car rental service
                             specializing in luxury cars, but also, economy
                             motors, business vehicles, and vans. We serve both
@@ -575,8 +598,8 @@ export default function Index({ data }) {
                             height="48"
                             alt="Fantastic Choice"
                         />
-                        <h4>Fantastic Choice</h4>
-                        <p>
+                        <h4 className="fs-18">Fantastic Choice</h4>
+                        <p className="fs-16">
                             Renty’s one-stop-shop gives customers fantastic
                             choice and best-in-industry value. All the cars
                             listed on Renty are fully-vetted and high-quality.
@@ -600,17 +623,18 @@ export default function Index({ data }) {
                             height="48"
                             alt="Luxury or Economy"
                         />
-                        <h4>Luxury or Economy</h4>
-                        <p>
+                        <h4 className="fs-18">Luxury or Economy</h4>
+                        <p className="fs-16">
                             There are many reasons to rent car in Dubai.
                             Business professionals often rent a car such as a
                             classy motor to impress clients and give the
                             impression of wealth and success. Many tourists hire
-                            cars to sample Dubai's luxurious lifestyle. But our
-                            listings do not only encompass high-end supercars
-                            like Ferrari and Lamborghini. We also provide a wide
-                            range of SUVs and economy cars, which are perfect
-                            for sightseeing all that Dubai has to offer.
+                            cars to sample Dubai&apos;s luxurious lifestyle. But
+                            our listings do not only encompass high-end
+                            supercars like Ferrari and Lamborghini. We also
+                            provide a wide range of SUVs and economy cars, which
+                            are perfect for sightseeing all that Dubai has to
+                            offer.
                         </p>
                     </div>
                 </div>
@@ -677,9 +701,9 @@ export default function Index({ data }) {
                         rental agreement. Contact us to learn more about
                         available plans for the vehicle of your choice.
                     </p>
-                    <a className="show-more text-decoration-none" href="#">
+                    {/* <a className="show-more text-decoration-none" href="#">
                         Show More
-                    </a>
+                    </a> */}
                 </div>
             </section>
             <section className="questions special-wrapper mb-5">
@@ -825,11 +849,11 @@ export default function Index({ data }) {
                         <ul className="question-section-list">
                             <li className="question-section-item">
                                 Is it possible to rent a car in Dubai with a US
-                                driver's license?
+                                driver&apos;s license?
                             </li>
                             <li className="question-section-item">
                                 Can I rent a car in Dubai with a recently issued
-                                driver's license in the UAE?
+                                driver&apos;s license in the UAE?
                             </li>
                             <li className="question-section-item">
                                 What driving licenses are accepted for renting a
@@ -839,8 +863,8 @@ export default function Index({ data }) {
                                 Can I rent a car in Dubai without a credit card?
                             </li>
                             <li className="question-section-item">
-                                Can I pay for the rental using someone else's
-                                card, or do I have to use my own?
+                                Can I pay for the rental using someone
+                                else&apos;s card, or do I have to use my own?
                             </li>
                             <li className="question-section-item">
                                 Can I rent a car in Dubai with cryptocurrency?

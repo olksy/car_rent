@@ -83,7 +83,11 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function 
         Route::put('/body_types/{body_type}', [BodyTypesController::class, 'update'])->name('admin.body_types.update');
         Route::delete('/body_types/{body_type}', [BodyTypesController::class, 'destroy'])->name('admin.body_types.destroy');
 
-        // etc.
-        Route::get('/cars_images', CarsImagesController::class)->name('admin.cars_images');
+        // for cars images
+        Route::get('/cars_images', [CarsImagesController::class, 'index'])->name('admin.cars_images.index');
+        Route::get('/cars_images/{car}/create', [CarsImagesController::class, 'create'])->name('admin.cars_images.create');
+        Route::post('/cars_images/{car}', [CarsImagesController::class, 'store'])->name('admin.cars_images.store');
+        Route::delete('/cars_images/{car}/image/{image}', [CarsImagesController::class, 'destroyImage'])->name('admin.cars_images.destroyImage');
+        Route::delete('/cars_images/{car}/destroyAll', [CarsImagesController::class, 'destroyAll'])->name('admin.cars_images.destroyAll');
     });
 });

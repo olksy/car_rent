@@ -14,7 +14,7 @@ class CarImagesTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('cars_images')->insert([
-            ['car_id' => 1, 'path' => 'images/black_rolls-royce-wraith-black-badge.avif', 'created_at' => now(), 'updated_at' => now()],
+            ['car_id' => 1, 'path' => 'images/rolls.avif', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }
