@@ -1,4 +1,5 @@
 .__swiper-style {
+    border-radius: 5px;
     /* width: 588px!important; */
     height: 364px;
     margin-left: 0!important;
@@ -136,6 +137,10 @@
 
 .fs-30 {
     font-size: 30px;
+}
+
+.fs-36 {
+    font-size: 36px;
 }
 
 @media (max-width: 991px) {

@@ -66,7 +66,10 @@ export default function LeftColumn({ data }) {
                         {data.images &&
                             data.images.map((image, index) => (
                                 <>
-                                    <SwiperSlide key={index}>
+                                    <SwiperSlide
+                                        key={index}
+                                        // style={{ width: "590px" }}
+                                    >
                                         <div className="gallery-item-link first-image cursor-pointer h-100">
                                             <img
                                                 style={{ width: "100%" }}

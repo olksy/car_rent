@@ -1,0 +1,20 @@
+.pp-section,
+.tc-section {
+    background-color: #f7f9fb;
+    padding-bottom: 64px;
+}
+
+.pp-content,
+.tc-section {
+    text-align: justify;
+}
+
+.pp-content h2,
+.tc-section h2 {
+    line-height: normal;
+}
+
+.content p,
+.content li {
+    font-size: 16px;
+}

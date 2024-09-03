@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
+    <style>
+        .table td {
+            vertical-align: middle;
+        }
+    </style>
+
     <div class="container">
         @if (session('success'))
             <div class="alert alert-success">
@@ -18,7 +24,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Car ID</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Car Brand</th>
                         <th scope="col">Car Title</th>
                         <th scope="col">Images</th>
@@ -37,41 +43,54 @@
                                 @else
                                     @foreach($car->images as $image)
                                         <a href="{{ asset('storage/images/' . $car->id . '/' . $image->path) }}" target="_blank">
-                                            <img src="{{ asset('storage/images/' . $car->id . '/' . $image->path) }}" alt="Car Image" class="img-thumbnail" style="max-width: 100px; max-height: 100px; margin: 5px;">
+                                            <img src="{{ asset('storage/images/' . $car->id . '/' . $image->path) }}" alt="Car Image" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
                                         </a>
                                     @endforeach
                                 @endif
                             </td>
                             <td>
-                                <!-- Button to Add Images to this Car -->
-                                <a href="{{ route('admin.cars_images.create', $car->id) }}" class="btn btn-success btn-sm w-100 mb-2">
-                                    Add Images
-                                </a>
+                                <div class="image-management">
+                                    <div class="row">
+                                        <div class="mb-3 col-6">
+                                            <a href="{{ route('admin.cars_images.create', $car->id) }}" class="btn btn-success btn-block">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
 
-                                <!-- Button to Delete All Images of this Car -->
-                                <form action="{{ route('admin.cars_images.destroyAll', $car->id) }}" method="POST"
-                                    onsubmit="return confirm('Are you sure you want to delete all images of this car?');"
-                                >
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger btn-sm w-100 mb-2">
-                                        Delete All Images
-                                    </button>
-                                </form>
+                                        <div class="mb-3 col-6">
+                                            <form action="{{ route('admin.cars_images.destroyAll', $car->id) }}" method="POST"
+                                                onsubmit="return confirm('Are you sure you want to delete all images of this car?');"
+                                            >
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-block">
+                                                    <i class="fas fa-trash-alt"></i> All
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
 
-                                <!-- Loop through each image to delete specific image -->
-                                @foreach($car->images as $image)
-                                    <form action="{{ route('admin.cars_images.destroyImage', ['car' => $car->id, 'image' => $image->id]) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this image?');"
-                                        class="mb-2"
-                                    >
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-warning btn-sm w-100">
-                                            Delete Image {{ $image->id }}
-                                        </button>
-                                    </form>
-                                @endforeach
+                                    <!-- Loop through each image -->
+                                    <div class="row">
+                                        @foreach($car->images as $image)
+                                            <div class="col-6 col-md-4">
+                                                <div class="card">
+                                                    <div class="card-body" style="padding: 0;">
+                                                        <form action="{{ route('admin.cars_images.destroyImage', ['car' => $car->id, 'image' => $image->id]) }}" method="POST"
+                                                            onsubmit="return confirm('Are you sure you want to delete this image?');"
+                                                        >
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-warning btn-sm btn-block">
+                                                                <i class="fas fa-trash-alt"></i> Image {{ $image->id }}
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

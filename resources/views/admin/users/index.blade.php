@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
+    <style>
+        .table td {
+            vertical-align: middle;
+        }
+    </style>
+
     <div class="container">
         @if (session('success'))
             <div class="alert alert-success">

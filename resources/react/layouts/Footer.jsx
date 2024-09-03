@@ -20,7 +20,7 @@ export default function Footer() {
                           <a
                               className="text-decoration-none mb-2 letter-spacing-0_2"
                               title="Terms &amp; conditions of using Renty Car Rental &amp; Leasing Portal"
-                              href="/"
+                              href="/terms-conditions"
                           >
                               Terms &amp; conditions
                           </a>
@@ -28,7 +28,7 @@ export default function Footer() {
                           <a
                               className="text-decoration-none mb-2 letter-spacing-0_2"
                               title="Privacy Policy"
-                              href="/"
+                              href="/privacy-policy"
                           >
                               Privacy Policy
                           </a>

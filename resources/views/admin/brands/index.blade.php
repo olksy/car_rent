@@ -5,6 +5,10 @@
     .hidden {
         display: none;
     }
+
+    .table td {
+        vertical-align: middle;
+    }
 </style>
 
     <div class="container">

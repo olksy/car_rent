@@ -1,5 +1,7 @@
 import CarPage from "../pages/main/CarPage";
 import Index from "../pages/Index";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import TermsConditions from "../pages/TermsConditions";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -29,6 +31,14 @@ function App() {
                     <Route
                         path="/cars/:slug/:id/detail"
                         element={<CarPage />}
+                    />
+                    <Route
+                        path="/privacy-policy"
+                        element={<PrivacyPolicy />}
+                    />
+                    <Route
+                        path="/terms-conditions"
+                        element={<TermsConditions />}
                     />
                 </Routes>
             </Router>

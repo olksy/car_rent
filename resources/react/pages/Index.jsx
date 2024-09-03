@@ -208,87 +208,121 @@ export default function Index({ data }) {
                 <div className="brands-title">
                     <h4>Most wanted car rental brands in Dubai</h4>
                     <h6>
-                        <a href="#" className="text-decoration-none">
+                        <a href="/brands" className="text-decoration-none">
                             All Brands
                         </a>
                     </h6>
                 </div>
                 <div className="car-brands">
                     <div className="car-brand">
-                        <img src={audisvg} alt="Audi" width="48" height="48" />
-                        <a href="#" className="text-decoration-none">
+                        <a
+                            href="/brands/audi"
+                            className="text-decoration-none d-flex flex-column align-items-center"
+                        >
+                            <img
+                                src={audisvg}
+                                alt="Audi"
+                                width="48"
+                                height="48"
+                            />
                             Audi
                         </a>
                     </div>
                     <div className="car-brand">
-                        <img src={bmwsvg} alt="BMW" width="48" height="48" />
-                        <a href="#" className="text-decoration-none">
+                        <a
+                            href="/brands/bmw"
+                            className="text-decoration-none d-flex flex-column align-items-center"
+                        >
+                            <img
+                                src={bmwsvg}
+                                alt="BMW"
+                                width="48"
+                                height="48"
+                            />
                             BMW
                         </a>
                     </div>
                     <div className="car-brand">
-                        <img
-                            src={ferrarisvg}
-                            alt="Ferrari"
-                            width="48"
-                            height="48"
-                        />
-                        <a href="#" className="text-decoration-none">
+                        <a
+                            href="/brands/ferrari"
+                            className="text-decoration-none d-flex flex-column align-items-center"
+                        >
+                            <img
+                                src={ferrarisvg}
+                                alt="Ferrari"
+                                width="48"
+                                height="48"
+                            />
                             Ferrari
                         </a>
                     </div>
                     <div className="car-brand">
-                        <img
-                            src={lamborghinisvg}
-                            alt="Lamborghini"
-                            width="48"
-                            height="48"
-                        />
-                        <a href="#" className="text-decoration-none">
+                        <a
+                            href="/brands/lamborghini"
+                            className="text-decoration-none d-flex flex-column align-items-center"
+                        >
+                            <img
+                                src={lamborghinisvg}
+                                alt="Lamborghini"
+                                width="48"
+                                height="48"
+                            />
                             Lamborghini
                         </a>
                     </div>
                     <div className="car-brand">
-                        <img
-                            src={mercedessvg}
-                            alt="Mercedes"
-                            width="48"
-                            height="48"
-                        />
-                        <a href="#" className="text-decoration-none">
+                        <a
+                            href="/brands/mercedes"
+                            className="text-decoration-none d-flex flex-column align-items-center"
+                        >
+                            <img
+                                src={mercedessvg}
+                                alt="Mercedes"
+                                width="48"
+                                height="48"
+                            />
                             Mercedes
                         </a>
                     </div>
                     <div className="car-brand">
-                        <img
-                            src={landroversvg}
-                            alt="Land-rover"
-                            width="48"
-                            height="48"
-                        />
-                        <a href="#" className="text-decoration-none">
+                        <a
+                            href="/brands/land_rover"
+                            className="text-decoration-none d-flex flex-column align-items-center"
+                        >
+                            <img
+                                src={landroversvg}
+                                alt="Land-rover"
+                                width="48"
+                                height="48"
+                            />
                             Range Rover
                         </a>
                     </div>
                     <div className="car-brand">
-                        <img
-                            src={porchesvg}
-                            alt="Porsche"
-                            width="48"
-                            height="48"
-                        />
-                        <a href="#" className="text-decoration-none">
+                        <a
+                            href="/brands/porsche"
+                            className="text-decoration-none d-flex flex-column align-items-center"
+                        >
+                            <img
+                                src={porchesvg}
+                                alt="Porsche"
+                                width="48"
+                                height="48"
+                            />
                             Porsche
                         </a>
                     </div>
                     <div className="car-brand">
-                        <img
-                            src={rollssvg}
-                            alt="Rolls-royce"
-                            width="48"
-                            height="48"
-                        />
-                        <a href="#" className="text-decoration-none">
+                        <a
+                            href="/brands/rolls_royce"
+                            className="text-decoration-none d-flex flex-column align-items-center"
+                        >
+                            <img
+                                src={rollssvg}
+                                alt="Rolls-royce"
+                                width="48"
+                                height="48"
+                            />
                             Rolls Royce
                         </a>
                     </div>
@@ -401,7 +435,10 @@ export default function Index({ data }) {
                 <div className="car-offers-title">
                     <h4>Enjoy the speed of a sports car</h4>
                     <h6>
-                        <a href="#" className="text-decoration-none">
+                        <a
+                            href="/cars/category/sports"
+                            className="text-decoration-none"
+                        >
                             All sports cars
                         </a>
                     </h6>
@@ -424,7 +461,11 @@ export default function Index({ data }) {
                                     <div className="car-offer-img rounded-medium">
                                         <img
                                             className="rounded-medium"
-                                            src={carImage ? `${pathToImg}/${car.id}/${carImage.path}` : `${pathToImg}/default_image.png`}
+                                            src={
+                                                carImage
+                                                    ? `${pathToImg}/${car.id}/${carImage.path}`
+                                                    : `${pathToImg}/default_image.png`
+                                            }
                                             title={`Hiring ${brand.name} ${car.title}`}
                                             alt={`Image of ${brand.name} ${car.title}`}
                                             loading="lazy"
@@ -432,7 +473,7 @@ export default function Index({ data }) {
                                             height="180"
                                         />
                                     </div>
-                                    <div className="car-offer-title">
+                                    <div className="car-offer-title mt-1">
                                         <p className="fs-16 fw-normal">
                                             {brand.name} {car.title}{" "}
                                         </p>
@@ -449,7 +490,10 @@ export default function Index({ data }) {
                 <div className="car-offers-title">
                     <h4>For SUV fans</h4>
                     <h6>
-                        <a href="#" className="text-decoration-none">
+                        <a
+                            href="/cars/body_type/suv"
+                            className="text-decoration-none"
+                        >
                             All SUV cars
                         </a>
                     </h6>
@@ -459,7 +503,9 @@ export default function Index({ data }) {
                         const brand = brands.find(
                             (brand) => brand.id === car.brand_id
                         );
-                        const carImage = images.find((image) => image.car_id === car.id);
+                        const carImage = images.find(
+                            (image) => image.car_id === car.id
+                        );
 
                         return (
                             <div key={car.id} className="car-offer">
@@ -470,7 +516,11 @@ export default function Index({ data }) {
                                     <div className="car-offer-img rounded-medium">
                                         <img
                                             className="rounded-medium"
-                                            src={carImage ? `${pathToImg}/${car.id}/${carImage.path}` : `${pathToImg}/default_image.png`}
+                                            src={
+                                                carImage
+                                                    ? `${pathToImg}/${car.id}/${carImage.path}`
+                                                    : `${pathToImg}/default_image.png`
+                                            }
                                             title={`Hiring ${brand.name} ${car.title}`}
                                             alt={`Image of ${brand.name} ${car.title}`}
                                             loading="lazy"
@@ -478,7 +528,7 @@ export default function Index({ data }) {
                                             height="180"
                                         />
                                     </div>
-                                    <div className="car-offer-title">
+                                    <div className="car-offer-title mt-1">
                                         <p className="fs-16 fw-normal">
                                             {brand.name} {car.title}{" "}
                                         </p>
@@ -495,7 +545,10 @@ export default function Index({ data }) {
                 <div className="car-offers-title">
                     <h4>Experience the luxury style of Dubai</h4>
                     <h6>
-                        <a href="#" className="text-decoration-none">
+                        <a
+                            href="/cars/category/luxury"
+                            className="text-decoration-none"
+                        >
                             All Luxury cars
                         </a>
                     </h6>
@@ -506,7 +559,9 @@ export default function Index({ data }) {
                         const brand = brands.find(
                             (brand) => brand.id === car.brand_id
                         );
-                        const carImage = images.find((image) => image.car_id === car.id);
+                        const carImage = images.find(
+                            (image) => image.car_id === car.id
+                        );
 
                         return (
                             <div key={car.id} className="car-offer">
@@ -517,7 +572,11 @@ export default function Index({ data }) {
                                     <div className="car-offer-img rounded-medium">
                                         <img
                                             className="rounded-medium"
-                                            src={carImage ? `${pathToImg}/${car.id}/${carImage.path}` : `${pathToImg}/default_image.png`}
+                                            src={
+                                                carImage
+                                                    ? `${pathToImg}/${car.id}/${carImage.path}`
+                                                    : `${pathToImg}/default_image.png`
+                                            }
                                             title={`Hiring ${brand.name} ${car.title}`}
                                             alt={`Image of ${brand.name} ${car.title}`}
                                             loading="lazy"
@@ -525,7 +584,7 @@ export default function Index({ data }) {
                                             height="180"
                                         />
                                     </div>
-                                    <div className="car-offer-title">
+                                    <div className="car-offer-title mt-1">
                                         <p className="fs-16 fw-normal">
                                             {brand.name} {car.title}{" "}
                                         </p>
@@ -687,13 +746,7 @@ export default function Index({ data }) {
                         Renty offers different car rental plans, from a standard
                         one-day agreement to yearly rentals. You can usually
                         hire a luxury vehicle for at least one day. However,
-                        some cars are eligible for an hourly hire. Our car
-                        rental platform also provides fully featured{" "}
-                        <a href="#" className="text-decoration-none">
-                            car leasing in the UAE,
-                        </a>{" "}
-                        including top-notch vehicles from all the categories
-                        listed on the website.
+                        some cars are eligible for an hourly hire.
                         <br />
                         <br />
                         Customers can also rent cheap cars for a month or even a
