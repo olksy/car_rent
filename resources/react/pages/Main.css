@@ -861,7 +861,6 @@ em {
 
 .rental-service-content p {
   margin-block: 20px;
-  font-size: 12px;
 }
 
 .rental-service-content a{
@@ -926,35 +925,80 @@ em {
   display: none;
 }
 
+.dropdown-container {
+  position: relative;
+}
 
+.dropdown-menu {
+  padding: 5px;
+  background-color: #fff;
+  min-width: 100%;
+  right: 0;
+  top: 40px;
+  width: 110px;
+}
+
+.dropdown-item {
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+.form-field-wrapper {
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+label.required {
+  color: #999;
+  display: block;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: .05em;
+  line-height: 15px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.login-form,
+.register-form {
+  border: 5px solid #ebeff8;
+  border-radius: 15px;
+}
+
+.login-btn,
+.register-btn {
+  background: #009fe2;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  height: 40px;
+}
 
 @media (max-width:1200px) {
   .header-logo-image {
     width: 90px;
     height: 20px;
   }
- 
 }
 
 @media (max-width:1000px) {
   .renty-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
- 
-}
-.renty-content {
-
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-.rent-additions-list {
-
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .renty-content {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .rent-additions-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 @media (max-width:900px) {
@@ -972,20 +1016,20 @@ em {
   .header-person-image {
     position: absolute;
     right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  }
+    top: 50%;
+    transform: translateY(-50%);
+    }
   .header-button,.group-item1,.header-language{
     display: none;
   }
-.strings {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  color: white;
-}
+  .strings {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+  }
   .car-types {
     flex-wrap: wrap;
     row-gap: 10px;
@@ -1002,21 +1046,34 @@ em {
     flex-direction: column;
   }
   .Reviews-partners {
-  margin-top: 40px;
-} 
-.partners-list {
-  flex-wrap: wrap;
- 
-}
-.Offers {
-  margin-top: 65px;
-}
-.partners {
-  margin-top: 25px;
-}
-.partners-title {
-  margin-inline: 10px;
-}
+    margin-top: 40px;
+  } 
+  .partners-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .partners-title h4 {
+    font-size: 1.8rem;
+  }
+  .Offers {
+    margin-top: 65px;
+  }
+  .partners {
+    margin-top: 25px;
+  }
+  .partners-title {
+    margin-inline: 10px;
+  }
+  .click-left {
+    top: 25%;
+    left: -20px;
+    transform: translateY(-25%);
+  }
+  .click-right {
+    top: 25%;
+    right:  -20px;
+    transform: translateY(-25%);
+  }
 }
 
 
@@ -1024,13 +1081,83 @@ em {
   .renty-title h3 {
     font-size: 2rem;
   }
+  .Hourly-content {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+}
+
+@media (max-width:650px) {
+  .car-offers,.hourly-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+  }
+  .click-left,.click-right  {
+    display: none;
+  }
+  .mask-image {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
 }
 
 @media (max-width: 630px) {
+  .search-input {
+    width: 300px;
+  }
   .car-rental {
     row-gap: 20px;
   }
   .car-rental:not(:first-of-type) {
-        margin-top: 50px;
+    margin-top: 50px;
+  }
+  .brands-title {
+    column-gap: 40px;
+  }
+  .renty-title {
+    flex-direction: column;
+    row-gap: 50px;
+  }
+}
+
+@media (max-width:530px) {
+  .search-form {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .car-offers-title {
+    display: flex;
+    flex-direction: column;
+  }
+  .questions-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 475px) {
+  .rent-title h2{
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .reviews-location {
+    margin-top: 15px;
+    margin-bottom: -5px;
+  }
+  .car-offers,.hourly-list {
+      grid-template-columns: 1fr;
+  }
+  .partners-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .renty-title-car {
+    width: 300px;
+  }
+}
+
+
+@media (max-width:360px) {
+  .brands-title h4{
+    font-size: 16px;
   }
 }

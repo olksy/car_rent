@@ -5,6 +5,8 @@ import TermsConditions from "../pages/TermsConditions";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
 
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -24,22 +26,18 @@ function App() {
         <>
             <Router>
                 <Routes>
-                    <Route
-                        path="/"
-                        element={<Index data={data} />}
-                    />
+                    <Route path="/" element={<Index data={data} />} />
                     <Route
                         path="/cars/:slug/:id/detail"
                         element={<CarPage />}
                     />
-                    <Route
-                        path="/privacy-policy"
-                        element={<PrivacyPolicy />}
-                    />
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                     <Route
                         path="/terms-conditions"
                         element={<TermsConditions />}
                     />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
                 </Routes>
             </Router>
         </>

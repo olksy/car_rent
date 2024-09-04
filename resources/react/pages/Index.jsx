@@ -10,11 +10,9 @@ import porchesvg from "./images/img/Cars/porsche-6.svg";
 import rollssvg from "./images/img/Cars/rolls-royce.svg";
 import googleReviews from "./images/img/Reviews.png";
 import glassIcon from "./images/icons/magnifying glass.png";
-import { IoGridOutline } from "react-icons/io5";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import strings from "./images/icons/strings.png";
+import Header from "../layouts/Header";
 
 
 export default function Index({ data }) {
@@ -43,58 +41,7 @@ export default function Index({ data }) {
   
     return (
         <>
-            <header className="header wrapper">
-                <img
-                    src={strings}
-                    className="strings"
-                    width="32"
-                    height="32"
-                    alt="strings-icon"
-                />
-                <div className="header-actions">
-                    <div className="header-logo">
-                        <a href="/" className="text-decoration-none mr-2">
-                            <img
-                                src="https://renty.ae/assets-nd/icons/site/logo-dark.svg"
-                                alt="logo"
-                                width="125"
-                                height="28"
-                                className="header-logo-image"
-                            />
-                        </a>
-                        <button className="header-button">
-                            <IoGridOutline />
-                            <a
-                                href="#"
-                                className="text-decoration-none fw-normal fs-16"
-                            >
-                                Rent a car
-                            </a>
-                        </button>
-
-                        <button className="brands-button">
-                            <span className="text-decoration-none text-light fs-16 fw-semibold">
-                                Brands
-                            </span>
-                        </button>
-                    </div>
-                </div>
-                <div className="group">
-                    <span className="header-language">
-                        English
-                        <IoMdArrowDropdown fill="white" />
-                    </span>
-                    <span className="header-person-image">
-                        <img
-                            src="https://renty.ae/assets-nd/images/placeholder/not-logged-in.png"
-                            alt="not-logged-in-profile-icon"
-                            height="24"
-                            width="24"
-                        />{" "}
-                        <IoMdArrowDropdown fill="white" />
-                    </span>
-                </div>
-            </header>
+            <Header />
             <section className="rent">
                 <div className="rent-title">
                     <h2>Rent a car in Dubai</h2>
@@ -741,8 +688,8 @@ export default function Index({ data }) {
             </section>
             <section className="rental-service special-wrapper">
                 <div className="rental-service-content">
-                    <h3>Car rental service</h3>
-                    <p>
+                    <h3 className="fs-30">Car rental service</h3>
+                    <p className="fs-14">
                         Renty offers different car rental plans, from a standard
                         one-day agreement to yearly rentals. You can usually
                         hire a luxury vehicle for at least one day. However,

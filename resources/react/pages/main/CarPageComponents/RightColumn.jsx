@@ -441,8 +441,6 @@ export default function RightColumn({ data }) {
                                             className="phone-number-input"
                                             required
                                             autoComplete="off"
-                                            // onChange={reset}
-                                            // onKeyUp={reset}
                                         />
                                     </div>
                                     {errorMsg && (

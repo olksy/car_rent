@@ -34,7 +34,7 @@
 <body class="container-fluid full-height d-flex justify-content-center align-items-center">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>Admin</b>LTE</a>
+            Admin Panel Car Rental
         </div>
         <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>

@@ -1,8 +1,15 @@
 import { IoGridOutline } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
 import strings from "../pages/images/icons/strings.png";
+import { useState } from "react";
 
 export default function Header() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
         <>
             <header className="header-layout wrapper m-0 py-3">
@@ -46,15 +53,27 @@ export default function Header() {
                         English
                         <IoMdArrowDropdown fill="white" />
                     </span>
-                    <span className="header-person-image">
-                        <img
-                            src="https://renty.ae/assets-nd/images/placeholder/not-logged-in.png"
-                            alt="not-logged-in-profile-icon"
-                            height="24"
-                            width="24"
-                        />{" "}
-                        <IoMdArrowDropdown fill="white" />
-                    </span>
+
+                    <div className="dropdown-container">
+                        <div className="header-person-image" onClick={toggleDropdown}>
+                            <img
+                                src="https://renty.ae/assets-nd/images/placeholder/not-logged-in.png"
+                                alt="not-logged-in-profile-icon"
+                                height="24"
+                                width="24"
+                            />{" "}
+                            <IoMdArrowDropdown fill="white" />
+                        </div>
+
+                        <div className={`dropdown-menu ${isOpen ? "show" : ""}`}>
+                            <a href="/login" className="dropdown-item text-right fs-14">
+                                Log in
+                            </a>
+                            <a href="/register" className="dropdown-item text-right fs-14">
+                                Sign up
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </header>
         </>

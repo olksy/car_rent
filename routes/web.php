@@ -8,14 +8,13 @@ use App\Http\Controllers\Admin\{
     DashboardController,
     CarsController,
     UsersController,
-    ImagesController,
     CarsImagesController,
     CategoriesController,
     BrandsController,
     BookingsController,
     BodyTypesController,
     ProfileController,
-    AuthController
+    AuthAdminController
 };
 
 
@@ -25,15 +24,16 @@ Route::get('/', function () {
 
 Route::get('locale/{lang}', [LocaleController::class, 'setLocale']);
 
+
 Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function () {
     Route::middleware([RedirectIfAuthenticated::class])->group(function() {
-        Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
-        Route::post('/login', [AuthController::class, 'login']);
+        Route::get('/login_admin', [AuthAdminController::class, 'showLoginForm'])->name('admin.login');
+        Route::post('/login_admin', [AuthAdminController::class, 'login']);
         // Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('admin.register');
         // Route::post('/register', [AuthController::class, 'register']);
     });
     
-    Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
+    Route::post('/logout', [AuthAdminController::class, 'logout'])->name('admin.logout');
     
     Route::middleware([Authenticate::class])->group(function() {
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');

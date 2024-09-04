@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
-class AuthController extends Controller
+class AuthAdminController extends Controller
 {
     public function showLoginForm()
     {
