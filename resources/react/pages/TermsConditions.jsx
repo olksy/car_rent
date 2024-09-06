@@ -6,7 +6,7 @@ export default function TermsConditions () {
         <>
             <Header />
             <div className="tc-section">
-                <div className="container pt-4">
+                <div className="container pt-4 px-lg-0">
                     <h1 className="fs-30">Terms &amp; Conditions</h1>
 
                     <div className="content">

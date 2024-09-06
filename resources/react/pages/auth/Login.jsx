@@ -35,7 +35,7 @@ export default function Login () {
                         </div>
 
                         <div className="col-md-12">
-                            <div className="form-field-wrapper mt-4">
+                            <div className="form-field-wrapper flex-column mt-4">
                                 <label htmlFor="password" className="required">
                                     password
                                 </label>

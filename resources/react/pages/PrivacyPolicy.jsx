@@ -6,7 +6,7 @@ export default function PrivacyPolicy () {
         <>
             <Header />
             <div className="pp-section">
-                <div className="container pt-4">
+                <div className="container pt-4 px-lg-0">
                     <h1 className="fs-36">Privacy Policy</h1>
                     <div className="pp-content">
                         <p className="fs-16 mt-2">

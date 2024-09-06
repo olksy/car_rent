@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import Footer from "../layouts/Footer";
-import audisvg from "./images/img/Cars/audi-1.svg";
+import audisvg from "./images/img/Cars/audi.svg";
 import bmwsvg from "./images/img/Cars/logo-bmw-2020.svg";
 import ferrarisvg from "./images/img/Cars/ferrari-4.svg";
 import lamborghinisvg from "./images/img/Cars/lamborghini.svg";
 import mercedessvg from "./images/img/Cars/mercedes-benz-9.svg";
 import landroversvg from "./images/img/Cars/land-rover-2.svg";
-import porchesvg from "./images/img/Cars/porsche-6.svg";
+import porchesvg from "./images/img/Cars/porsche.svg";
 import rollssvg from "./images/img/Cars/rolls-royce.svg";
 import googleReviews from "./images/img/Reviews.png";
 import glassIcon from "./images/icons/magnifying glass.png";
@@ -383,7 +383,7 @@ export default function Index({ data }) {
                     <h4>Enjoy the speed of a sports car</h4>
                     <h6>
                         <a
-                            href="/cars/category/sports"
+                            href="/types/sports"
                             className="text-decoration-none"
                         >
                             All sports cars
@@ -438,7 +438,7 @@ export default function Index({ data }) {
                     <h4>For SUV fans</h4>
                     <h6>
                         <a
-                            href="/cars/body_type/suv"
+                            href="/body-types/suv"
                             className="text-decoration-none"
                         >
                             All SUV cars
@@ -493,7 +493,7 @@ export default function Index({ data }) {
                     <h4>Experience the luxury style of Dubai</h4>
                     <h6>
                         <a
-                            href="/cars/category/luxury"
+                            href="/types/luxury"
                             className="text-decoration-none"
                         >
                             All Luxury cars

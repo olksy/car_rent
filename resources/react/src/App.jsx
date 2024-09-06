@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import Brand from "../pages/main/Brand";
 
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -38,6 +39,7 @@ function App() {
                     />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/brands/:brand" element={<Brand />} />
                 </Routes>
             </Router>
         </>

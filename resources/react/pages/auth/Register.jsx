@@ -142,7 +142,7 @@ export default function Register() {
                         </div>
 
                         <div className="col-md-12 mt-4">
-                            <div className="form-field-wrapper">
+                            <div className="form-field-wrapper flex-column">
                                 <label
                                     htmlFor="password"
                                     className="required mb-2"
@@ -161,7 +161,7 @@ export default function Register() {
                         </div>
 
                         <div className="col-md-12 mt-4">
-                            <div className="form-field-wrapper">
+                            <div className="form-field-wrapper flex-column">
                                 <label
                                     htmlFor="password"
                                     className="required mb-2"

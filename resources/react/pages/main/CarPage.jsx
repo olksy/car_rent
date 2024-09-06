@@ -44,7 +44,7 @@ export default function CarPage() {
         <>
             <div className="bg-white">
                 <Header />
-                <div className="container pt-lg-4">
+                <div className="container pt-lg-4 px-lg-0">
                     {/* Car name */}
                     <div className="pb-3 pt-3 mt-0 pt-lg-0 d-flex align-items-center mt-lg-0">
                         <span className="mr-2 d-flex align-items-center">
