@@ -23,4 +23,5 @@ Route::get('/cars', [GetCarsData::class, 'index']);
 Route::get('/cars/{slug}/{id}/detail', [CarController::class, 'show']);
 Route::post('/bookings', [BookingController::class, 'store']);
 Route::get('/brands', [BrandController::class, 'index']);
+Route::get('/brands/{brand}', [BrandController::class, 'api']);
 Route::get('/car_images', [CarImagesController::class, 'index']);

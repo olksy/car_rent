@@ -552,8 +552,6 @@ input:focus {
   justify-content: space-between;
 }
 
-
-
 .car-offers {
   margin-top: 20px;
   display: flex;
@@ -576,7 +574,6 @@ input:focus {
 }
 
 .car-offer img{
-  /* width: auto; */
   height: 150px;
   transition: transform 0.3s ease-in-out;
 }
@@ -1028,6 +1025,50 @@ label.required {
 .brandname:hover {
   background-color: rgba(128, 128, 128, 0.1);
 }
+
+.car-list-item > div {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.car-image-img {
+  overflow: hidden;
+}
+
+.car-image-img img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.car-image-img:hover img{
+  transform: scale(1.05);
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.km-per-day::after {
+  color: #596372;
+  content: "·";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 25px;
+  margin-left: 3px;
+}
+
+.btn-details {
+  /* padding: 10px 20px; */
+  border-color: #ccd4de;
+  background-color: #fff;
+}
+
+.btn-details:hover {
+  background-color: rgb(128, 128, 128, 0.1);
+}
+
+.btn-details > span {
+  color: #1359ba;
+}
+
 
 @media (max-width:1200px) {
   .header-logo-image {

@@ -115,6 +115,10 @@
     font-size: 12px;
 }
 
+.fs-13 {
+    font-size: 13px;
+}
+
 .fs-14 {
     font-size: 14px;
 }
@@ -242,7 +246,8 @@
 }
 
 .contact_btn:hover {
-    background-color: #1f8c49;
+    background-color: rgb(79, 188, 121);
+
 }
 
 .span-contact {
