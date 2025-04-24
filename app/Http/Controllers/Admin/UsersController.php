@@ -24,6 +24,7 @@ class UsersController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'number' => 'required|string|max:255',
         ]);
 
         $user->update($validated);
@@ -36,5 +37,5 @@ class UsersController extends Controller
         $user->delete();
         return redirect()->route('admin.users.index')->with('success', 'User was successfully deleted!');
     }
-    
+
 }

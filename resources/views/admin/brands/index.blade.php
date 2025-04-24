@@ -25,9 +25,9 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Actions</th>
+                    <th class="col-4">ID</th>
+                    <th class="col-4">Name</th>
+                    <th class="col-4">Actions</th>
                 </tr>
             </thead>
 
@@ -38,16 +38,17 @@
                         <td>{{ $brand->name }}</td>
                         <td>
                             <div class="d-flex">
-                                <a href="{{ route('admin.brands.edit', $brand->id) }}" class="btn btn-info btn-sm mr-2">
+                                <a href="{{ route('admin.brands.edit', $brand->id) }}" class="btn btn-info btn-sm mr-2 col-6">
                                     Edit
                                 </a>
                                 
                                 <form action="{{ route('admin.brands.destroy', $brand->id) }}" method="POST"
                                     onsubmit="return confirm('Are you sure you want to delete this brand?');"
+                                    class="col-6"
                                 >
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm w-100">Delete</button>
                                 </form>
                             </div>
                         </td>

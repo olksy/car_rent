@@ -26,9 +26,9 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Actions</th>
+                    <th class="col-4">ID</th>
+                    <th class="col-4">Name</th>
+                    <th class="col-4">Actions</th>
                 </tr>
             </thead>
 

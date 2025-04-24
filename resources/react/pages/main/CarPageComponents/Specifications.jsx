@@ -21,7 +21,7 @@ export default function Specifications({
     return (
         <>
             <p className="h4 pb-3">Specifications</p>
-            <div className="row mb-5">
+            <div className="row mb-lg-5 mb-sm-3">
                 <div className="col-12 col-lg-4 pb-3">
                     <div className="d-flex align-items-center">
                         <span className="specifications-icon">
@@ -31,7 +31,7 @@ export default function Specifications({
                             <div className="specifications-title col-4 col-lg-12 d-flex align-items-center">
                                 Year
                             </div>
-                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0">
+                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0 text-end text-lg-start">
                                 {year}
                             </div>
                         </div>
@@ -46,7 +46,7 @@ export default function Specifications({
                             <div className="specifications-title col-4 col-lg-12 d-flex align-items-center">
                                 Color
                             </div>
-                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0">
+                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0 text-end text-lg-start">
                                 {color}
                             </div>
                         </div>
@@ -61,7 +61,7 @@ export default function Specifications({
                             <div className="specifications-title col-4 col-lg-12 d-flex align-items-center">
                                 0 - 100km/h
                             </div>
-                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0">
+                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0 text-end text-lg-start">
                                 {zerotohundred}
                             </div>
                         </div>
@@ -76,7 +76,7 @@ export default function Specifications({
                             <div className="specifications-title col-4 col-lg-12 d-flex align-items-center">
                                 Transmission
                             </div>
-                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0">
+                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0 text-end text-lg-start">
                                 {transmission}
                             </div>
                         </div>
@@ -91,7 +91,7 @@ export default function Specifications({
                             <div className="specifications-title col-4 col-lg-12 d-flex align-items-center">
                                 Engine
                             </div>
-                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0">
+                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0 text-end text-lg-start">
                                 {engine}
                             </div>
                         </div>
@@ -106,7 +106,7 @@ export default function Specifications({
                             <div className="specifications-title col-4 col-lg-12 d-flex align-items-center">
                                 Max Speed
                             </div>
-                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0">
+                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0 text-end text-lg-start">
                                 {maxspeed}
                             </div>
                         </div>
@@ -121,7 +121,7 @@ export default function Specifications({
                             <div className="specifications-title col-4 col-lg-12 d-flex align-items-center">
                                 Horse Power
                             </div>
-                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0">
+                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0 text-end text-lg-start">
                                 {horse}
                             </div>
                         </div>
@@ -136,7 +136,7 @@ export default function Specifications({
                             <div className="specifications-title col-4 col-lg-12 d-flex align-items-center">
                                 Seats
                             </div>
-                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0">
+                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0 text-end text-lg-start">
                                 {seats}
                             </div>
                         </div>
@@ -151,7 +151,7 @@ export default function Specifications({
                             <div className="specifications-title col-4 col-lg-12 d-flex align-items-center">
                                 Fuel Type
                             </div>
-                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0">
+                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0 text-end text-lg-start">
                                 {fuelt}
                             </div>
                         </div>
@@ -166,7 +166,7 @@ export default function Specifications({
                             <div className="specifications-title col-4 col-lg-12 d-flex align-items-center">
                                 Body Type
                             </div>
-                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0">
+                            <div className="specifications-main col-8 col-lg-12 ml-auto ml-lg-0 text-end text-lg-start">
                                 {bodyt}
                             </div>
                         </div>

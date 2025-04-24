@@ -1,0 +1,29 @@
+@media (max-width:990px) {
+    .type-h {
+        font-size: 25px;
+    }
+    .car-image-img img {
+        width: 100%;
+        height: 100%;
+        transition: none;
+    }
+    .car-image-img:hover img{
+        transform: none;
+    }
+    .w-fit-content {
+        width: 100%;
+    }
+    .details {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .km-per-day::after {
+        content: "";
+    }
+    .insurance span:nth-child(3) {
+        color: #0ea548!important;
+    }
+    .car-list-item > div {
+        border-bottom: none;
+    }
+  }

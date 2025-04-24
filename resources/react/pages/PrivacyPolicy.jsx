@@ -1,9 +1,13 @@
+import { Helmet } from "react-helmet-async";
 import Footer from "../layouts/Footer";
 import Header from "../layouts/Header";
 
 export default function PrivacyPolicy () {
     return (
         <>
+            <Helmet>
+                <title>Privacy Policy - Rently</title>
+            </Helmet>
             <Header />
             <div className="pp-section">
                 <div className="container pt-4 px-lg-0">

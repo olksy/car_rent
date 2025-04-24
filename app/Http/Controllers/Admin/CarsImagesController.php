@@ -42,7 +42,7 @@ class CarsImagesController extends Controller
             }
         }
     
-        return redirect()->route('admin.cars_images.index', $carId)->with('success', 'Images uploaded successfully.');
+        return redirect()->route('admin.cars_images.images', $carId)->with('success', 'Images uploaded successfully.');
     }
     
 
@@ -51,7 +51,7 @@ class CarsImagesController extends Controller
         Storage::delete('public/images/' . $carId . '/' . $image->path);
         $image->delete();
 
-        return redirect()->route('admin.cars_images.index')->with('success', 'Image deleted successfully.');
+        return redirect()->route('admin.cars_images.images', $carId)->with('success', 'Image deleted successfully.');
     }
 
     public function destroyAll($carId) {
@@ -59,5 +59,11 @@ class CarsImagesController extends Controller
         
         CarsImage::where('car_id', $carId)->delete();
         return redirect()->route('admin.cars_images.index')->with('success', 'All images deleted successfully');
+    }
+    
+    public function images($id)
+    {
+        $car = Cars::with('images')->findOrFail($id);
+        return view('admin.cars_images.images', compact('car'));
     }
 }

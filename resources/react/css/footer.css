@@ -39,7 +39,7 @@
 }
 
 .footer-locations-container {
-  gap: 50px;
+  /* gap: 50px; */
 }
 
 .location-in-dubai {
@@ -91,4 +91,16 @@ a:hover,
 .rights {
   font-size: 12px;
   color: #8c98ab;
+}
+
+@media (max-width: 991px) {
+  .footer-pages-block {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 389px) {
+  .footer-pages-block a {
+    font-size: 12px;
+  }
 }

@@ -1,9 +1,13 @@
+import { Helmet } from "react-helmet-async";
 import Footer from "../layouts/Footer";
 import Header from "../layouts/Header";
 
 export default function TermsConditions () {
     return (
         <>
+            <Helmet>
+                <title>Terms & Conditions - Rently</title>
+            </Helmet>
             <Header />
             <div className="tc-section">
                 <div className="container pt-4 px-lg-0">
@@ -464,8 +468,12 @@ export default function TermsConditions () {
                         <h2 className="fs-30 mt-3 mb-3">
                             OUR WEBSITE OPERATION
                         </h2>
-                        <p className="mb-2">Ultra Web Design operates our website.</p>
-                        <p className="mb-2">Al Abraj Street, Business Bay, Silver Tower 2010</p>
+                        <p className="mb-2">
+                            Ultra Web Design operates our website.
+                        </p>
+                        <p className="mb-2">
+                            Al Abraj Street, Business Bay, Silver Tower 2010
+                        </p>
                         <p className="mb-2">PO BOX 234565 DUBAI</p>
                         <p>UNITED ARAB EMIRATES</p>
                     </div>

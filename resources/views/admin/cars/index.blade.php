@@ -26,22 +26,12 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Brand</th>
-                    <th>Price</th>
-                    <th>Year</th>
-                    <th>Color</th>
-                    <th>0-100</th>
-                    <th>Transmission</th>
-                    <th>Engine</th>
-                    <th>Max Speed</th>
-                    <th>Horse P</th>
-                    <th>Seats</th>
-                    <th>Fuel</th>
-                    <th>Body</th>
-                    <th>Category</th>
-                    <th>Actions</th>
+                    <th class="col-1">ID</th>
+                    <th class="col-1">Brand</th>
+                    <th class="col-2">Title</th>
+                    <th class="col-1">Price</th>
+                    <th class="col-1">Category</th>
+                    <th class="col-2">Actions</th>
                 </tr>
             </thead>
 
@@ -49,29 +39,20 @@
                 @foreach ($cars as $car)
                     <tr>
                         <td>{{ $car->id }}</td>
-                        <td>{{ $car->title }}</td>
                         <td>{{ $car->brand->name }}</td> 
+                        <td>{{ $car->title }}</td>
                         <td>{{ $car->price }}</td>
-                        <td>{{ $car->year }}</td>
-                        <td>{{ $car->color }}</td>
-                        <td>{{ $car->zeroToHundred }}</td>
-                        <td>{{ $car->transmission }}</td>
-                        <td>{{ $car->engine }}</td>
-                        <td>{{ $car->maxSpeed }}</td>
-                        <td>{{ $car->horsepower }}</td>
-                        <td>{{ $car->seats }}</td>
-                        <td>{{ $car->fuelType }}</td>
-                        <td>{{ $car->bodyType->name }}</td>
                         <td>{{ $car->category->name }}</td>
                         <td>
-                            <a href="{{ route('admin.cars.edit', $car->id) }}" class="btn btn-info btn-sm w-100">Edit</a>
-                            <form action="{{ route('admin.cars.destroy', $car->id) }}" method="POST"
+                            <a href="{{ route('admin.cars.edit', $car->id) }}" class="btn btn-info btn-sm w-100 mb-1">Edit</a>
+                            <form action="{{ route('admin.cars.destroy', $car->id) }}" method="POST" class="mb-1"
                                 onsubmit="return confirm('Are you sure you want to delete this car?');"
                             >
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-sm w-100">Delete</button>
                             </form>
+                            <a href="{{ route('admin.cars_images.images', $car->id) }}" class="btn btn-primary btn-sm w-100">Images</a>
                         </td>
                     </tr>
                 @endforeach

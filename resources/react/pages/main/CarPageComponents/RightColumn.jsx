@@ -8,8 +8,11 @@ import { format } from 'date-fns';
 import { useState, useRef, useEffect } from "react";
 import { PiWarningCircleBold } from "react-icons/pi";
 import axios from "axios";
+import ErrPopUp from "../../../ui/ErrPopUp";
+import SuccessPopUp from "../../../ui/SuccessPopUp";
 
-export default function RightColumn({ data }) {
+// eslint-disable-next-line no-unused-vars
+export default function RightColumn({ data, isBurger, isBooked }) {
     const [dates, setDates] = useState({ startDate: null, endDate: null });
 
     const handleDatesSelected = (startDate, endDate) => {
@@ -48,13 +51,40 @@ export default function RightColumn({ data }) {
     // --- display date, price, numOfDays, startDate, endDate---
 
     // --- for phone number---
-    const [errorMsg, setErrorMsg] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [errorMsg, setErrorMsg] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
     const inputRef = useRef(null);
     const itiRef = useRef(null);
-    const errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+    const errorMap = [
+        "Invalid number",
+        "Invalid country code",
+        "Too short",
+        "Too long",
+        "Invalid number",
+    ];
 
     useEffect(() => {
+        const token = localStorage.getItem("token");
+
+        if (token) {
+            axios
+                .get("http://127.0.0.1:8000/api/user", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((response) => {
+                    const userPhoneNumber = response.data.number;
+                    if (userPhoneNumber && itiRef.current) {
+                        itiRef.current.setNumber(userPhoneNumber);
+                        setPhoneNumber(userPhoneNumber);
+                    }
+                })
+                .catch((err) => {
+                    console.log(`Error: ${err}!`);
+                });
+        }
+
         if (inputRef.current) {
             itiRef.current = window.intlTelInput(inputRef.current, {
                 utilsScript:
@@ -78,31 +108,33 @@ export default function RightColumn({ data }) {
     }, []);
 
     const reset = () => {
-        inputRef.current.closest('.form-field-wrapper').classList.remove('error');
+        inputRef.current
+            .closest(".form-field-wrapper")
+            .classList.remove("error");
         setErrorMsg("");
     };
 
     const showError = (msg) => {
-        inputRef.current.closest('.form-field-wrapper').classList.add('error');
+        inputRef.current.closest(".form-field-wrapper").classList.add("error");
         setErrorMsg(msg);
     };
 
     const handleValidate = () => {
         reset();
         const input = inputRef.current;
-    
+
         if (!input.value.trim()) {
-          showError('Required');
-          return false;
+            showError("Required");
+            return false;
         } else if (itiRef.current.isValidNumber()) {
-          return true;
+            return true;
         } else {
-          const errorCode = itiRef.current.getValidationError();
-          const msg = errorMap[errorCode] || 'Invalid number';
-          showError(msg);
-          return false;
+            const errorCode = itiRef.current.getValidationError();
+            const msg = errorMap[errorCode] || "Invalid number";
+            showError(msg);
+            return false;
         }
-      };
+    };
     // --- for phone number---
 
     // const [timeLeft, setTimeLeft] = useState(60 * 60);
@@ -127,8 +159,9 @@ export default function RightColumn({ data }) {
     //     return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
     // };
 
-    // --- mini validation for button --- 
+    // --- mini validation for button ---
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
     useEffect(() => {
         if (numberOfDays === 0 || dates.startDate === null) {
             setIsButtonDisabled(true);
@@ -146,6 +179,9 @@ export default function RightColumn({ data }) {
     // --- time start/end for form ---
 
     // --- submitting data---
+    const [bookingErr, setBookingErr] = useState(false);
+    const [success, setSuccess] = useState (false);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -153,9 +189,12 @@ export default function RightColumn({ data }) {
             return;
         }
 
+        setIsSubmitted(true);
+        setIsButtonDisabled(true);
+
         const formatDate = (date) =>
             date ? format(new Date(date.dateInstance), "yyyy-MM-dd") : "";
-    
+
         const formData = {
             start_date: formatDate(dates.startDate),
             end_date: formatDate(dates.endDate),
@@ -165,21 +204,29 @@ export default function RightColumn({ data }) {
             car_id: data.id,
         };
 
-        // try {
-        //     const response = await axios.post(
-        //         "http://127.0.0.1:8000/api/bookings",
-        //         formData
-        //     );
-        //     console.log("Booking saved:", response.data);
-        // } catch (error) {
-        //     console.error("Error saving booking:", error);
-        // }
-        console.log(formData);
+        try {
+            const response = await axios.post(
+                "http://127.0.0.1:8000/api/bookings",
+                formData
+            );
+
+            if (response.data.error) {
+                setBookingErr(true);
+                return false;
+            }
+
+            setSuccess(true);
+            setIsButtonDisabled(true);
+        } catch (error) {
+            console.error(error);
+        }
     };
     // --- submitting data---
-    
+
     return (
         <>
+            <ErrPopUp err={bookingErr} setErr={setBookingErr} />
+            <SuccessPopUp success={success} setSuccess={setSuccess} />
             <div className="col-12 col-lg-5 p-0 d-none d-lg-block">
                 <div className="title-car-mobile">
                     <div className="d-none d-lg-block py-3 px-4">
@@ -206,20 +253,30 @@ export default function RightColumn({ data }) {
 
                         {/* ---price, some info and contact */}
                         <div className="mb-3">
-                            {/* Змінювати текст в залежності чи арендували авто чи ні */}
-                            <div className="availability-label d-flex align-items-center rounded-small py-1 min-height-35 bg-info">
+                            <div
+                                className={`availability-label d-flex align-items-center rounded-small py-1 min-height-35 ${
+                                    isBooked ? "bg-none" : "bg-info"
+                                }`}
+                            >
                                 <span className="calendar-check d-flex ms-1 mr-2">
                                     <LiaCalendarCheck
                                         className="calendar-check-svg"
-                                        fill="#0ea548"
+                                        fill={isBooked ? "#6c757d" : "#0ea548"}
                                     />
                                 </span>
-                                <span className="color-brand-accent fs-14">
-                                    Available now
+                                <span
+                                    className={
+                                        isBooked
+                                            ? "text-muted fs-14"
+                                            : "color-brand-accent fs-14"
+                                    }
+                                >
+                                    {isBooked
+                                        ? "Available Soon"
+                                        : "Available now"}
                                 </span>
                             </div>
 
-                            {/* зробити модальне вікно */}
                             <div className="d-flex align-items-center rounded-small py-1 min-height-35">
                                 <span className="d-flex ms-1 mr-2">
                                     <AiOutlineInfoCircle
@@ -382,8 +439,10 @@ export default function RightColumn({ data }) {
                         {/* ---CALENDAR */}
                         <div className="row mt-2 mb-2">
                             <LitePicker
+                                id={"main-datepicker"}
                                 onDatesSelected={handleDatesSelected}
                                 onError={handleError}
+                                carId={data.id}
                             />
                         </div>
                         {dateError && (
@@ -393,7 +452,10 @@ export default function RightColumn({ data }) {
                                     style={{ "--bs-bg-opacity": 0.15 }}
                                 >
                                     <span className="warning-svg d-flex">
-                                        <PiWarningCircleBold fill="#ffc107" className="fs-18"/>
+                                        <PiWarningCircleBold
+                                            fill="#ffc107"
+                                            className="fs-18"
+                                        />
                                     </span>
                                     <span className="fs-14 text-warning">
                                         {dateError}
@@ -570,11 +632,13 @@ export default function RightColumn({ data }) {
                                         data-car-type={data.category.name}
                                         data-id={data.id}
                                         className={`reserve-btn m-w-100 requestModal fw-bold text-uppercase btn btn-primary ${
-                                            isButtonDisabled
+                                            isButtonDisabled || isSubmitted
                                                 ? "disabled"
                                                 : "active"
                                         }`}
-                                        disabled={isButtonDisabled}
+                                        disabled={
+                                            isButtonDisabled || isSubmitted
+                                        }
                                         onClick={handleValidate}
                                     >
                                         <span className="fs-15 letter-spacing-0_5">
@@ -582,6 +646,19 @@ export default function RightColumn({ data }) {
                                         </span>
                                     </button>
                                 </div>
+                                {/* success message */}
+                                {/* <div
+                                    className="alert alert-success py-1 mt-3 d-flex flex-column"
+                                    role="alert"
+                                >
+                                    <span className="fs-14">
+                                        You&apos;ve successfully rented a car!
+                                    </span>
+                                    <span className="fs-14">
+                                        Wait for the message on your email or
+                                        phone number!
+                                    </span>
+                                </div> */}
                             </div>
                         </form>
                     </div>

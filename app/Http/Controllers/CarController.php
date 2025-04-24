@@ -16,4 +16,30 @@ class CarController extends Controller
 
         return response()->json($car);
     }
+
+    public function fuzzySearch(Request $request)
+    {
+        $input = strtolower(trim($request->query('search')));
+
+        if (!$input) {
+            return response()->json([]);
+        }
+
+        $cars = Cars::with('brand')->get();
+        $results = [];
+
+        foreach ($cars as $car) {
+            $brand = strtolower($car->brand->name);
+            $title = strtolower($car->title);
+            $full = "$brand $title";
+
+            similar_text($input, $full, $percent);
+
+            if ($percent > 35) {
+                $results[] = $car;
+            }
+        }
+
+        return response()->json($results);
+    }
 }

@@ -1,9 +1,14 @@
 .__swiper-style {
     border-radius: 5px;
     /* width: 588px!important; */
-    height: 364px;
+    /* height: 364px; */
+    height: 355px;
     margin-left: 0!important;
     margin-right: 0!important;
+}
+
+.swiper-pagination-bullet, .swiper-pagination-bullet-active {
+    background: #fff !important;
 }
 
 @media (max-width: 1189px) {
@@ -14,7 +19,18 @@
 
 @media (max-width: 991px) {
     .__swiper-style {
-        height: 420px;
+        height: 405px;
+    }
+    .car-gallery-swiper {
+        --swiper-pagination-bullet-width: 6px;
+        --swiper-pagination-bullet-height: 6px;
+        --swiper-pagination-bullet-horizontal-gap: 2px;
+    }
+}
+
+@media (max-width: 767px) {
+    .__swiper-style {
+        height: 300px;
     }
 }
 
@@ -135,6 +151,10 @@
     font-size: 18px;
 }
 
+.fs-20 {
+    font-size: 20px;
+}
+
 .fs-24 {
     font-size: 24px;
 }
@@ -234,7 +254,7 @@
 
 .btn-medium {
     height: 40px;
-    min-width: 40px;
+    /* min-width: 40px; */
     padding: 0 10px;
     justify-content: center;
     align-items: center;
@@ -343,11 +363,11 @@
 }
 
 #litepicker {
-    width: 100%;
+    width: 100% !important;
 }
 
 .litepicker {
-    width: 100%;
+    width: 100% !important;
 }
 
 .litepicker .container__months {
@@ -368,12 +388,19 @@
     font-weight: 400;
 }
 
+.litepicker .container__days .day-item.is-in-range {
+    background: #e6f5fc;
+    color: #009fe2;
+}
+
 .month-item-weekdays-row>div, .title-car-mobile .container__days>div, .title-car-mobile .month-item-weekdays-row>div {
     align-items: center;
     display: flex;
     height: 45px;
     justify-content: center;
     width: 100% !important;
+    font-size: 14.4px;
+    cursor: pointer!important;
 }
 
 
@@ -384,6 +411,7 @@
 }
 
 .title-car-mobile .container__days, .title-car-mobile .month-item-weekdays-row {
+    width: 100%;
     display: grid !important;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-content: center;
@@ -411,6 +439,10 @@
     outline: 1px solid #dc3545;
 }
 
+.form-field-wrapper.success {
+    outline: 1px solid #18bc9c;
+}
+
 .default-phone-input {
     height: 50px;
 }
@@ -436,6 +468,7 @@
 .iti {
     display: flex !important;
     font-size: 14px !important;
+    width: 100%;
 }
 
 .iti__country-container {
@@ -511,4 +544,105 @@
 
 .reserve-btn span {
     color: #fff;
+}
+
+.error-page img {
+    max-height: 45px;
+    width: auto;
+}
+
+.error-page .title {
+    color: #13428d;
+    font-size: 9rem;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.error-page .desc {
+    color: #101010;
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.mob-nav ul li {
+    cursor: pointer;
+    height: 50px;
+    position: relative;
+    transition: border-bottom .3s ease;
+}
+
+.mob-nav ul li::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #009fe2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mob-nav ul li:hover::after {
+    opacity: 1;
+}
+
+.active-nav {
+    color: #009fe2;
+}
+
+.active-nav::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #009fe2;
+    opacity: 1!important;
+}
+
+.month-item-weekdays-row {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.container__days {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.container__days>div {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    width: 100%!important;
+    height: 45px;
+}
+
+.litepicker .container__days .day-item.is-locked {
+    cursor: not-allowed!important;
+}
+
+@media (max-width:990px) {
+    .arrow-down-svg {
+        position: absolute;
+        top: 38%;
+        right: 2%;
+    }
+  }
+
+@media (max-width: 400px) {
+    .brand-img img {
+        width: 45px;
+    }
+    .__swiper-style {
+        height: 230px;
+    }
 }

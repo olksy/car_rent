@@ -21,6 +21,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Number</th>
                     <th>Password</th>
                     <th>Actions</th>
                 </tr>
@@ -32,6 +33,7 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td> 
+                        <td>{{ $user->number }}</td> 
                         <td>{{ $user->password }}</td> 
                         <td>
                             <div class="d-flex">

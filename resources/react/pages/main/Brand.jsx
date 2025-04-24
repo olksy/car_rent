@@ -3,32 +3,58 @@ import Footer from "../../layouts/Footer";
 import Header from "../../layouts/Header";
 import { BiSortAlt2 } from "react-icons/bi";
 import { RiArrowDownSLine } from "react-icons/ri";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { IoIosArrowForward } from "react-icons/io";
+import { Helmet } from "react-helmet-async";
+import { PulseLoader } from "react-spinners";
 
 export default function Brand () {
     const [isSortPrice, setIsSortPrice] = useState(false);
     const { brand } = useParams();
     const dropdownRef = useRef(null);
+    const navigate = useNavigate();
 
     const [data, setData] = useState([]);
+    const [initialData, setInitialData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [sortType, setSortType] = useState('recommended');
     
     useEffect(() => {
         setLoading(true);
         axios
         .get(`http://127.0.0.1:8000/api/brands/${brand}`)
         .then((response) => {
-            setData(response.data);
+            if (response.data.length > 0) {
+                setData(response.data);
+                setInitialData(response.data);
+            } else {
+                navigate("/page/not-found");
+            }
             setLoading(false);
         })
         .catch((error) => {
             console.error("There was an error fetching the data!", error);
+            navigate("/page/not-found");
             setLoading(false);
         });
-    }, [brand]);
+    }, [brand, navigate]);
     console.log(data);
+
+    const sortData = (type) => {
+        if (type === 'recommended') {
+            setData(initialData);
+        } else {
+            let sortedData = [...data];
+            if(type === 'low-to-high') {
+                sortedData.sort((a, b) => a.price - b.price);
+            } else if (type === 'high-to-low') {
+                sortedData.sort((a, b) => b.price - a.price);
+            }
+            setData(sortedData);
+        }
+    }
 
     const handleClickOutside = (event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -47,35 +73,68 @@ export default function Brand () {
         setIsSortPrice(!isSortPrice);
     }
 
+    const handleSort = (type) => {
+        setSortType(type);
+        sortData(type);
+        setIsSortPrice(false);
+    }
+
     if(loading) {
         return (
             <>
-                <div>
-                    {/* замінити на гіфку чи щось типу того на лоадінг */}
-                    <h1>Loading...</h1>
+                <div className="d-flex justify-content-center align-items-center vh-100">
+                    <PulseLoader color="#13428d" />
                 </div>
             </>
         );
     }
 
-    const brandHeader =
-        data.length > 0
-            ? data[0].brand.name
-            : brand.charAt(0).toUpperCase() + brand.slice(1).toLowerCase();
+    // const brandHeader =
+    //     data.length > 0
+    //         ? data[0].brand.name
+    //         : brand.charAt(0).toUpperCase() + brand.slice(1).toLowerCase();
 
     return (
         <>
+            <Helmet>
+                <title>
+                    {data.length > 0 && `${data[0].brand.name} Rental in Dubai, Rently`}
+                </title>
+            </Helmet>
             <Header />
-            <div className="container pt-3 pt-lg-4 px-lg-0">
-                <div className="d-block pb-2">
-                    <h1 className="d-inline fs-36">
-                        Rent {brandHeader} in Dubai
+            <div className="container px-lg-0">
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb d-flex align-items-center mt-3">
+                        <li className="breadcrumb-item d-flex align-items-center">
+                            <a
+                                href="/"
+                                className="text-decoration-none fw-semibold fs-12"
+                            >
+                                Rent a car
+                            </a>
+                        </li>
+                        <li className="mx-1 d-flex align-items-center">
+                            <IoIosArrowForward className="fs-12" />
+                        </li>
+                        <li
+                            className="breadcrumb-item active fs-12 d-flex align-items-center"
+                            aria-current="page"
+                        >
+                            {data.length > 0 && `${data[0].brand.name}`}
+                        </li>
+                    </ol>
+                </nav>
+
+                <div className="d-block pt-lg-3 pt-sm-0 pb-2">
+                    <h1 className="type-h d-block d-lg-inline fs-36 mt-3 mt-lg-0">
+                        {data.length > 0 &&
+                            `Rent ${data[0].brand.name} in Dubai`}
                     </h1>
                 </div>
 
                 <div className="d-flex pt-1 align-items-end pb-lg-4">
                     <div
-                        className="d-lg-flex d-none"
+                        className="d-lg-flex"
                         style={{ maxHeight: "max-content" }}
                     >
                         <div className="sort-price" ref={dropdownRef}>
@@ -92,7 +151,11 @@ export default function Brand () {
                                     />
                                 </span>
                                 <span className="fs-12 color-shades-black mr-2 text-nowrap">
-                                    Recommended
+                                    {sortType === "low-to-high"
+                                        ? "From low to high"
+                                        : sortType === "high-to-low"
+                                        ? "From high to low"
+                                        : "Recommended"}
                                 </span>
                                 <span>
                                     <RiArrowDownSLine
@@ -103,17 +166,38 @@ export default function Brand () {
                             </button>
 
                             <div
-                                className={`dropdown-menu mb-0 ${
-                                    isSortPrice ? "show" : ""
+                                className={`dropdown-menu mb-0 d-flex flex-column ${
+                                    isSortPrice ? "modal-clicked" : "modal-unclicked"
                                 }`}
                             >
-                                <button className="btn fs-14 justify-content-start dropdown-item rounded-small disabled">
+                                <button
+                                    className={`btn fs-14 justify-content-start dropdown-item rounded-small ${
+                                        sortType === "recommended"
+                                            ? "disabled"
+                                            : ""
+                                    }`}
+                                    onClick={() => handleSort("recommended")}
+                                >
                                     Recommended
                                 </button>
-                                <button className="btn fs-14 justify-content-start dropdown-item rounded-small">
-                                    From hight to low
+                                <button
+                                    className={`btn fs-14 justify-content-start dropdown-item rounded-small ${
+                                        sortType === "high-to-low"
+                                            ? "disabled"
+                                            : ""
+                                    }`}
+                                    onClick={() => handleSort("high-to-low")}
+                                >
+                                    From high to low
                                 </button>
-                                <button className="btn fs-14 justify-content-start dropdown-item rounded-small">
+                                <button
+                                    className={`btn fs-14 justify-content-start dropdown-item rounded-small ${
+                                        sortType === "low-to-high"
+                                            ? "disabled"
+                                            : ""
+                                    }`}
+                                    onClick={() => handleSort("low-to-high")}
+                                >
                                     From low to high
                                 </button>
                             </div>
@@ -127,6 +211,10 @@ export default function Brand () {
                             const formattedBrandName = car.brand.name
                                 .toLowerCase()
                                 .replace(/ /g, "-");
+
+                            const imagePath = car.images?.[0]?.path
+                                ? `http://127.0.0.1:8000/storage/images/${car.id}/${car.images[0].path}`
+                                : "http://127.0.0.1:8000/storage/images/default.png";
                             return (
                                 <div
                                     key={car.id}
@@ -144,7 +232,7 @@ export default function Brand () {
                                                 <div className="car-image-img rounded-small">
                                                     <img
                                                         className="rounded-small"
-                                                        src={`http://127.0.0.1:8000/storage/images/${car.id}/${car.images[0].path}`}
+                                                        src={imagePath}
                                                         title={`Hiring ${car.brand.name} ${car.title} (${car.color}), ${car.year} in Dubai`}
                                                         alt={`${car.brand.name} ${car.title} (${car.color}), ${car.year}`}
                                                         loading="lazy"
@@ -159,7 +247,7 @@ export default function Brand () {
                                                     justify-content-center align-items-center justify-content-between flex-lg-row"
                                             >
                                                 {/* left-side */}
-                                                <div className="d-flex flex-column flex-grow-1 w-100 pr-lg-3 gap-10">
+                                                <div className="d-flex flex-column flex-grow-1 w-100 pr-lg-3 gap-10 mt-3 mt-lg-0 mb-2 mb-lg-0">
                                                     <div className="d-flex flex-column flex-lg-row align-items-lg-center align-items-start position-relative car-list-name-container blend-mode-luminosity">
                                                         <div className="d-flex m-w-100 align-items-center overflow-hidden mr-auto">
                                                             <span className="icon-brand">
@@ -182,7 +270,7 @@ export default function Brand () {
 
                                                     <div className="d-none d-lg-flex flex-lg-column overflow-hidden gap-10">
                                                         <div className="d-flex align-items-center">
-                                                            <span className="px-1 d-flex">
+                                                            <span className="px-1 d-none d-lg-flex">
                                                                 <AiOutlineInfoCircle
                                                                     className="fs-15"
                                                                     fill="#596372"
@@ -197,7 +285,7 @@ export default function Brand () {
                                                                 250 km for 1 day
                                                             </span>
                                                             <span
-                                                                className="fs-14 fw-normal ps-1 text-nowrap"
+                                                                className="fs-14 fw-normal ps-lg-1 text-nowrap"
                                                                 style={{
                                                                     color: "#596372",
                                                                 }}
@@ -212,7 +300,7 @@ export default function Brand () {
 
                                                 {/* right-side */}
                                                 <div className="d-flex flex-column w-fit-content h-100 justify-content-between col-lg-3">
-                                                    <div className="d-lg-flex d-none flex-column w-100 align-items-end">
+                                                    <div className="d-none d-lg-flex flex-column w-100 align-items-end mb-3">
                                                         <span
                                                             className="fs-11 fw-bold text-uppercase letter-spacing-1"
                                                             style={{
@@ -226,12 +314,56 @@ export default function Brand () {
                                                         </span>
                                                     </div>
 
+                                                    {/* for small display */}
+                                                    <div className="d-lg-none d-flex mb-2 mb-sm-3 mb-lg-0">
+                                                        <div className="d-flex row align-items-center insurance">
+                                                            <span className="px-1 d-none d-lg-flex">
+                                                                <AiOutlineInfoCircle
+                                                                    className="fs-15"
+                                                                    fill="#596372"
+                                                                />
+                                                            </span>
+                                                            <span
+                                                                className="fs-14 fw-normal text-nowrap km-per-day"
+                                                                style={{
+                                                                    color: "#596372",
+                                                                }}
+                                                            >
+                                                                250 km for 1 day
+                                                            </span>
+                                                            <span
+                                                                className="fs-14 fw-normal ps-lg-1 text-nowrap"
+                                                                style={{
+                                                                    color: "#596372",
+                                                                }}
+                                                            >
+                                                                Insurance
+                                                                included
+                                                            </span>
+                                                        </div>
+
+                                                        <div className=" d-flex flex-column align-items-end col-6">
+                                                            <span
+                                                                className="fs-11 fw-bold text-uppercase letter-spacing-1"
+                                                                style={{
+                                                                    color: "#596372",
+                                                                }}
+                                                            >
+                                                                price per day
+                                                            </span>
+                                                            <span className="fs-24 fw-normal">
+                                                                € {car.price}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    {/* for small display */}
+
                                                     <div
-                                                        className="d-flex justify-content-end"
+                                                        className="d-flex justify-content-end align-items-center"
                                                         style={{ gap: "5px" }}
                                                     >
                                                         <a
-                                                            className="btn btn-details align-items-center d-none d-lg-flex fw-bolder"
+                                                            className="btn btn-details align-items-center d-lg-flex fw-bolder details"
                                                             href={`/cars/${car.slug}/${car.id}/detail`}
                                                             role="button"
                                                         >
@@ -241,7 +373,7 @@ export default function Brand () {
                                                         </a>
 
                                                         <button
-                                                            className="btn btn-medium contact_btn d-none d-lg-flex fw-bolder"
+                                                            className="btn btn-medium contact_btn d-lg-flex fw-bolder details"
                                                             title="Contact Renty.ae car rental"
                                                         >
                                                             <span className="fs-14 span-contact text-nowrap text-uppercase letter-spacing-0_2">
@@ -254,6 +386,7 @@ export default function Brand () {
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="border"></div>
                                 </div>
                             );
                         })}

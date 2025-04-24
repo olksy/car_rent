@@ -9,7 +9,7 @@ class GetCarsData extends Controller
 {
     public function index()
     {
-        $data = Cars::all(); // Отримання всіх записів з таблиці
-        return response()->json($data); // Відправлення даних у форматі JSON
+        $data = Cars::with('brand')->get();
+        return response()->json($data);
     }
 }

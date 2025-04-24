@@ -16,26 +16,22 @@ use App\Http\Controllers\Admin\{
     ProfileController,
     AuthAdminController
 };
+use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
+use Laravel\Fortify\Http\Controllers\NewPasswordController;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn() => view('welcome'));
 
 Route::get('locale/{lang}', [LocaleController::class, 'setLocale']);
 
+Route::get('/access_denied', fn() => view('admin.access_denied'))->name('admin.access_denied');
 
 Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function () {
-    Route::middleware([RedirectIfAuthenticated::class])->group(function() {
+    Route::middleware([RedirectIfAuthenticated::class])->group(function () {
         Route::get('/login_admin', [AuthAdminController::class, 'showLoginForm'])->name('admin.login');
         Route::post('/login_admin', [AuthAdminController::class, 'login']);
-        // Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('admin.register');
-        // Route::post('/register', [AuthController::class, 'register']);
     });
-    
-    Route::post('/logout', [AuthAdminController::class, 'logout'])->name('admin.logout');
-    
-    Route::middleware([Authenticate::class])->group(function() {
+
+    Route::middleware([Authenticate::class, 'is_admin'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/profile', ProfileController::class)->name('admin.profile');
 
@@ -52,7 +48,7 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function 
         Route::get('/users/{user}/edit', [UsersController::class, 'edit'])->name('admin.users.edit');
         Route::put('/users/{user}', [UsersController::class, 'update'])->name('admin.users.update');
         Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('admin.users.destroy');
-        
+
         // for brands
         Route::get('/brands', [BrandsController::class, 'index'])->name('admin.brands.index');
         Route::post('/brands', [BrandsController::class, 'store'])->name('admin.brands.store');
@@ -84,10 +80,18 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function 
         Route::delete('/body_types/{body_type}', [BodyTypesController::class, 'destroy'])->name('admin.body_types.destroy');
 
         // for cars images
+        Route::get('/car_images/{id}', [CarsImagesController::class, 'images'])->name('admin.cars_images.images');
         Route::get('/cars_images', [CarsImagesController::class, 'index'])->name('admin.cars_images.index');
         Route::get('/cars_images/{car}/create', [CarsImagesController::class, 'create'])->name('admin.cars_images.create');
         Route::post('/cars_images/{car}', [CarsImagesController::class, 'store'])->name('admin.cars_images.store');
         Route::delete('/cars_images/{car}/image/{image}', [CarsImagesController::class, 'destroyImage'])->name('admin.cars_images.destroyImage');
         Route::delete('/cars_images/{car}/destroyAll', [CarsImagesController::class, 'destroyAll'])->name('admin.cars_images.destroyAll');
     });
+
+    Route::post('/logout', [AuthAdminController::class, 'logout'])->name('admin.logout');
 });
+
+Route::get('/reset-password/{token}', function ($token) {
+    $email = request()->query('email');
+    return redirect("http://localhost:5173/reset-password/{$token}?email={$email}");
+})->name('password.reset');
