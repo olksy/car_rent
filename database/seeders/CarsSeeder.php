@@ -32,7 +32,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 1,
                 "category_id" => 2,
                 "created_at" => null,
-                "updated_at" => "2024-11-22T20:59:41.000000Z",
+                "updated_at" => "2024-11-22T20:59:41.000000Z"
             ],
             [
                 "id" => 5,
@@ -52,7 +52,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 2,
                 "category_id" => 2,
                 "created_at" => "2024-09-02T08:34:56.000000Z",
-                "updated_at" => "2024-09-02T08:39:27.000000Z",
+                "updated_at" => "2024-09-02T08:39:27.000000Z"
             ],
             [
                 "id" => 6,
@@ -72,7 +72,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 2,
                 "category_id" => 2,
                 "created_at" => "2024-09-02T08:36:42.000000Z",
-                "updated_at" => "2024-09-02T08:39:34.000000Z",
+                "updated_at" => "2024-09-02T08:39:34.000000Z"
             ],
             [
                 "id" => 7,
@@ -92,7 +92,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 2,
                 "category_id" => 2,
                 "created_at" => "2024-09-02T08:40:46.000000Z",
-                "updated_at" => "2024-09-02T08:40:46.000000Z",
+                "updated_at" => "2024-09-02T08:40:46.000000Z"
             ],
             [
                 "id" => 8,
@@ -112,7 +112,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 2,
                 "category_id" => 6,
                 "created_at" => "2024-09-02T09:15:03.000000Z",
-                "updated_at" => "2024-09-02T09:15:03.000000Z",
+                "updated_at" => "2024-09-02T09:15:03.000000Z"
             ],
             [
                 "id" => 9,
@@ -132,7 +132,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 7,
                 "category_id" => 7,
                 "created_at" => "2024-09-02T09:17:49.000000Z",
-                "updated_at" => "2024-09-02T09:17:49.000000Z",
+                "updated_at" => "2024-09-02T09:17:49.000000Z"
             ],
             [
                 "id" => 10,
@@ -152,7 +152,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 7,
                 "category_id" => 7,
                 "created_at" => "2024-09-02T09:21:12.000000Z",
-                "updated_at" => "2024-09-02T09:21:12.000000Z",
+                "updated_at" => "2024-09-02T09:21:12.000000Z"
             ],
             [
                 "id" => 11,
@@ -172,7 +172,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 2,
                 "category_id" => 7,
                 "created_at" => "2024-09-02T09:23:38.000000Z",
-                "updated_at" => "2024-09-02T09:23:38.000000Z",
+                "updated_at" => "2024-09-02T09:23:38.000000Z"
             ],
             [
                 "id" => 12,
@@ -192,7 +192,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 7,
                 "category_id" => 7,
                 "created_at" => "2024-09-02T09:26:18.000000Z",
-                "updated_at" => "2024-09-02T09:26:18.000000Z",
+                "updated_at" => "2024-09-02T09:26:18.000000Z"
             ],
             [
                 "id" => 13,
@@ -212,7 +212,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 7,
                 "category_id" => 7,
                 "created_at" => "2024-09-19T15:38:49.000000Z",
-                "updated_at" => "2024-09-19T15:38:49.000000Z",
+                "updated_at" => "2024-09-19T15:38:49.000000Z"
             ],
             [
                 "id" => 14,
@@ -232,7 +232,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 2,
                 "category_id" => 5,
                 "created_at" => "2024-09-19T15:42:41.000000Z",
-                "updated_at" => "2024-09-19T15:43:48.000000Z",
+                "updated_at" => "2024-09-19T15:43:48.000000Z"
             ],
             [
                 "id" => 15,
@@ -252,7 +252,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 1,
                 "category_id" => 6,
                 "created_at" => "2024-09-19T15:46:33.000000Z",
-                "updated_at" => "2024-09-19T15:46:33.000000Z",
+                "updated_at" => "2024-09-19T15:46:33.000000Z"
             ],
             [
                 "id" => 16,
@@ -272,7 +272,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 4,
                 "category_id" => 6,
                 "created_at" => "2024-09-19T15:49:42.000000Z",
-                "updated_at" => "2024-09-19T15:49:42.000000Z",
+                "updated_at" => "2024-09-19T15:49:42.000000Z"
             ],
             [
                 "id" => 17,
@@ -292,7 +292,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 1,
                 "category_id" => 4,
                 "created_at" => "2024-09-19T15:52:15.000000Z",
-                "updated_at" => "2024-09-19T15:52:15.000000Z",
+                "updated_at" => "2024-09-19T15:52:15.000000Z"
             ],
             [
                 "id" => 18,
@@ -312,7 +312,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 4,
                 "category_id" => 5,
                 "created_at" => "2024-09-19T15:55:33.000000Z",
-                "updated_at" => "2024-09-19T15:55:33.000000Z",
+                "updated_at" => "2024-09-19T15:55:33.000000Z"
             ],
             [
                 "id" => 19,
@@ -332,7 +332,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 4,
                 "category_id" => 3,
                 "created_at" => "2024-09-20T07:51:59.000000Z",
-                "updated_at" => "2024-09-20T07:51:59.000000Z",
+                "updated_at" => "2024-09-20T07:51:59.000000Z"
             ],
             [
                 "id" => 20,
@@ -352,7 +352,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 4,
                 "category_id" => 1,
                 "created_at" => "2024-09-20T08:07:12.000000Z",
-                "updated_at" => "2024-09-20T08:07:21.000000Z",
+                "updated_at" => "2024-09-20T08:07:21.000000Z"
             ],
             [
                 "id" => 21,
@@ -372,7 +372,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 4,
                 "category_id" => 8,
                 "created_at" => "2024-09-20T08:09:43.000000Z",
-                "updated_at" => "2024-09-20T08:09:55.000000Z",
+                "updated_at" => "2024-09-20T08:09:55.000000Z"
             ],
             [
                 "id" => 22,
@@ -392,7 +392,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 8,
                 "category_id" => 8,
                 "created_at" => "2024-09-20T08:32:48.000000Z",
-                "updated_at" => "2024-09-20T08:32:48.000000Z",
+                "updated_at" => "2024-09-20T08:32:48.000000Z"
             ],
             [
                 "id" => 23,
@@ -412,7 +412,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 6,
                 "category_id" => 2,
                 "created_at" => "2024-09-20T08:59:37.000000Z",
-                "updated_at" => "2024-09-20T08:59:37.000000Z",
+                "updated_at" => "2024-09-20T08:59:37.000000Z"
             ],
             [
                 "id" => 24,
@@ -432,7 +432,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 5,
                 "category_id" => 2,
                 "created_at" => "2024-09-20T09:01:56.000000Z",
-                "updated_at" => "2024-09-20T09:01:56.000000Z",
+                "updated_at" => "2024-09-20T09:01:56.000000Z"
             ],
             [
                 "id" => 25,
@@ -452,7 +452,7 @@ class CarsSeeder extends Seeder
                 "body_type_id" => 3,
                 "category_id" => 5,
                 "created_at" => "2024-09-20T09:03:22.000000Z",
-                "updated_at" => "2024-09-20T09:03:22.000000Z",
+                "updated_at" => "2024-09-20T09:03:22.000000Z"
             ],
         ]);
     }
