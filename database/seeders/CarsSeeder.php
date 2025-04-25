@@ -15,7 +15,6 @@ class CarsSeeder extends Seeder
     {
         DB::table('cars')->insert([
             [
-                "id" => 1,
                 "title" => "Wraith Badge",
                 "slug" => "wraith-black-badge",
                 "brand_id" => 1,
@@ -35,7 +34,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 5,
                 "title" => "X6",
                 "slug" => "bmw-x6",
                 "brand_id" => 2,
@@ -55,7 +53,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 6,
                 "title" => "X7 M50i",
                 "slug" => "bmw-x7-m50i",
                 "brand_id" => 2,
@@ -75,7 +72,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 7,
                 "title" => "RSQ8",
                 "slug" => "rsq8",
                 "brand_id" => 3,
@@ -95,7 +91,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 8,
                 "title" => "Tahoe",
                 "slug" => "chevrolet-tahoe",
                 "brand_id" => 4,
@@ -115,7 +110,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 9,
                 "title" => "Huracan Spyder",
                 "slug" => "lamborghini-huracan",
                 "brand_id" => 7,
@@ -135,7 +129,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 10,
                 "title" => "R8 V10 Spyder",
                 "slug" => "audi-r8",
                 "brand_id" => 3,
@@ -155,7 +148,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 11,
                 "title" => "Urus",
                 "slug" => "lamborghini-urus",
                 "brand_id" => 7,
@@ -175,7 +167,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 12,
                 "title" => "Corvette Spyder",
                 "slug" => "chevrolet-corvette",
                 "brand_id" => 4,
@@ -195,7 +186,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 13,
                 "title" => "F8 Tributo Spyder",
                 "slug" => "ferrari-f8-tributo",
                 "brand_id" => 8,
@@ -215,7 +205,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 14,
                 "title" => "Sport",
                 "slug" => "range-rover-sport",
                 "brand_id" => 10,
@@ -235,7 +224,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 15,
                 "title" => "CLA 250",
                 "slug" => "mercedes-cla250",
                 "brand_id" => 9,
@@ -255,7 +243,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 16,
                 "title" => "Panamera 4",
                 "slug" => "porsche-panamera",
                 "brand_id" => 11,
@@ -275,7 +262,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 17,
                 "title" => "Mustang",
                 "slug" => "ford-mustang-classic",
                 "brand_id" => 6,
@@ -295,7 +281,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 18,
                 "title" => "XF",
                 "slug" => "jaguar-xf",
                 "brand_id" => 5,
@@ -315,7 +300,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 19,
                 "title" => "EQS 580",
                 "slug" => "mercedes-eqs",
                 "brand_id" => 9,
@@ -335,7 +319,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 20,
                 "title" => "C200",
                 "slug" => "mercedes-c-class",
                 "brand_id" => 9,
@@ -355,7 +338,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 21,
                 "title" => "A4",
                 "slug" => "audi-a4",
                 "brand_id" => 3,
@@ -375,7 +357,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 22,
                 "title" => "318",
                 "slug" => "bmw-3-series",
                 "brand_id" => 2,
@@ -395,7 +376,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 23,
                 "title" => "RS6",
                 "slug" => "audi-rs6",
                 "brand_id" => 3,
@@ -415,7 +395,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 24,
                 "title" => "F150",
                 "slug" => "ford-f150",
                 "brand_id" => 6,
@@ -435,7 +414,6 @@ class CarsSeeder extends Seeder
                 "updated_at" => now()
             ],
             [
-                "id" => 25,
                 "title" => "V250",
                 "slug" => "mercedes-v-class",
                 "brand_id" => 9,
