@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BodyTypeSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(CarsSeeder::class);
-        $this->call(CarsImagesSeeder::class);
+        // $this->call(CarsImagesSeeder::class);
     }
 }
