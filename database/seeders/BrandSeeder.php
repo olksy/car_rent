@@ -25,6 +25,7 @@ class BrandSeeder extends Seeder
             ["name" => "Ferrari", "slug" => "ferrari", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
             ["name" => "Mercedes", "slug" => "mercedes", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
             ["name" => "Range Rover", "slug" => "range-rover", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
+            ["name" => "Porsche", "slug" => "porsche", "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
         ]);
     }
 }
