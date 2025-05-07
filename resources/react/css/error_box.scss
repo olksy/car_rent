@@ -1,3 +1,4 @@
+@use 'sass:color';
 $white: #FCFCFC;
 $gray: #CBCDD3;
 $dark: #777777;
@@ -33,7 +34,7 @@ $font: 'Lato', sans-serif;
 }
 
 .red {
-  color: darken($error, 10%);
+  color: color.adjust($error, $lightness: -10%);
 }
 
 .alert_error,
@@ -49,7 +50,7 @@ $font: 'Lato', sans-serif;
 .message p {
     font-size: 8px;
     font-weight: 600;
-    color: darken($dark, 10%);
+    color: color.adjust($dark, $lightness: -10%);
     letter-spacing: 1px;
 }
 
@@ -180,7 +181,7 @@ button, .dot {
   box-shadow: 2px 2px 10px rgba($dark, .5);
   transition: all .5s ease-in-out;
   &:hover {
-    background: darken($white, 5%);
+    background: color.adjust($white, $lightness: -5%);
     transform: scale(1.05);
     transition: all .3s ease-in-out;
   }

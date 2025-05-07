@@ -444,10 +444,10 @@ export default function Header() {
                         </div>
                     </div>
                     <div className="group">
-                        <span className="header-language">
+                        {/* <span className="header-language">
                             English
                             <IoMdArrowDropdown fill="white" />
-                        </span>
+                        </span> */}
 
                         <div className="dropdown-container">
                             <div

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cars extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'id',
         'title',

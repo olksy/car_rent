@@ -64,7 +64,7 @@ class CarsController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:cars,slug,'.$car->id,
+            'slug' => 'required|string|max:255|unique:cars,slug,' . $car->id,
             'brand_id' => 'required|exists:brands,id',
             'price' => 'required|numeric',
             'year' => 'required|integer',
